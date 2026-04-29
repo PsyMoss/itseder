@@ -113,6 +113,7 @@ h1 em{color:var(--acc);font-style:normal}
 .ab-val{font-family:'Syne',system-ui,sans-serif;font-size:1.05rem;font-weight:700}
 
 /* ── WHY ── */
+#cl5{font-size:clamp(1.5rem,4vw,1.9rem);font-weight:700;letter-spacing:-.02em;color:var(--acc);text-transform:none;font-family:'Syne',system-ui,sans-serif}
 .why-inner{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.75rem}
 .why-header{margin-bottom:1.25rem}
 .why-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
@@ -141,7 +142,61 @@ h1 em{color:var(--acc);font-style:normal}
 .ci{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--bg3);border:1px solid var(--border);flex-shrink:0}
 .clink-label{display:none}
 .clink-val{font-size:16px;font-weight:400}
+.wa-clink{border-color:rgba(37,211,102,0.3) !important;background:rgba(37,211,102,0.06) !important}
+.wa-clink:hover{border-color:#25D366 !important;color:#25D366 !important;background:rgba(37,211,102,0.12) !important}
+.wa-ci{background:#25D366 !important;border-color:#25D366 !important}
 footer{text-align:center;padding:1.75rem 1.25rem;font-size:13px;color:var(--muted);border-top:1px solid var(--border);line-height:1.6}
+
+/* ── WHATSAPP BUTTON ── */
+.wa-btn{
+  position:fixed;bottom:24px;left:24px;z-index:999;
+  width:58px;height:58px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+  cursor:pointer;text-decoration:none;
+  transition:transform .2s,box-shadow .2s;
+  animation:wa-pulse 2.5s infinite;
+}
+.wa-btn:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+.wa-btn svg{width:30px;height:30px;fill:#fff}
+@keyframes wa-pulse{
+  0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}
+  50%{box-shadow:0 4px 28px rgba(37,211,102,.7),0 0 0 8px rgba(37,211,102,.1)}
+}
+.wa-tooltip{
+  position:fixed;bottom:32px;left:90px;z-index:998;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:8px 14px;
+  font-size:13px;color:var(--text);white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+.wa-btn{
+  position:fixed;bottom:24px;left:24px;z-index:999;
+  width:58px;height:58px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+  cursor:pointer;text-decoration:none;
+  transition:transform .2s,box-shadow .2s;
+  animation:wa-pulse 2.5s infinite;
+}
+.wa-btn:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(37,211,102,.55)}
+.wa-btn svg{width:30px;height:30px;fill:#fff}
+@keyframes wa-pulse{
+  0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}
+  50%{box-shadow:0 4px 28px rgba(37,211,102,.7),0 0 0 8px rgba(37,211,102,.1)}
+}
+.wa-tooltip{
+  position:fixed;bottom:32px;left:90px;z-index:998;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:8px 14px;
+  font-size:13px;color:var(--text);white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+.wa-btn:hover + .wa-tooltip{opacity:1}
 
 /* ════════════════════════
    RTL — direction:rtl on body handles text automatically.
@@ -163,6 +218,13 @@ footer{text-align:center;padding:1.75rem 1.25rem;font-size:13px;color:var(--mute
 [dir="rtl"] .scard::after{content:'';display:table;clear:both}
 /* nav: logo stays left, langs right — keep as-is for brand */
 </style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0LGPY0DNL2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0LGPY0DNL2');
+</script>
 </head>
 <body id="body" dir="rtl" lang="he">
 
@@ -192,14 +254,14 @@ footer{text-align:center;padding:1.75rem 1.25rem;font-size:13px;color:var(--mute
 <hr class="sep">
 
 <section class="wrap" id="services">
-  <span class="slabel" id="cl1"></span>
+  <span class="slabel" id="cl1" style="display:none"></span>
   <h2 class="stitle" id="ct1"></h2>
   <div class="core-grid" id="core-grid"></div>
 </section>
 <hr class="sep">
 
 <section class="wrap">
-  <span class="slabel grn" id="cl2"></span>
+  <span class="slabel grn" id="cl2" style="display:none"></span>
   <h2 class="stitle" id="ct2"></h2>
   <div class="server-block">
     <p class="server-desc" id="srv-desc"></p>
@@ -209,7 +271,7 @@ footer{text-align:center;padding:1.75rem 1.25rem;font-size:13px;color:var(--mute
 <hr class="sep">
 
 <section class="wrap">
-  <span class="slabel blu" id="cl3"></span>
+  <span class="slabel blu" id="cl3" style="display:none"></span>
   <h2 class="stitle" id="ct3"></h2>
   <div class="partner-block">
     <p class="partner-note" id="pnote"></p>
@@ -252,8 +314,10 @@ footer{text-align:center;padding:1.75rem 1.25rem;font-size:13px;color:var(--mute
     <div class="ltags"><span class="ltag">EN</span><span class="ltag">RU</span><span class="ltag">HE</span></div>
     <div class="clinks">
       <a class="clink" href="tel:+972525983311"><div class="ci">📱</div><div class="clink-val">052-598-3311</div></a>
-      <a class="clink" href="mailto:info@itseder.com"><div class="ci">✉️</div><div class="clink-val">alexypv@gmail.com</div></a>
-      <a class="clink" href="http://itseder.com" target="_blank" rel="noopener"><div class="ci">🌐</div><div class="clink-val">itseder.com</div></a>
+      <a class="clink" href="mailto:info@itseder.com"><div class="ci">✉️</div><div class="clink-val">info@itseder.com</div></a>
+      <a class="clink wa-clink" href="https://wa.me/972525983311" target="_blank" rel="noopener"><div class="ci wa-ci">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </div><div class="clink-val" id="wa-text">WhatsApp</div></a>
     </div>
   </div>
 </section>
@@ -262,9 +326,9 @@ footer{text-align:center;padding:1.75rem 1.25rem;font-size:13px;color:var(--mute
 
 <script>
 var T={
-  en:{dir:'ltr',lang:'en',pill:'IT solutions · Israel',h1:'Your office — <em>ready to work</em><br>from day one',hsub:'Full IT setup for offices, remote support, servers and infrastructure — for law firms, insurance, finance and small business across Israel.',b1:'Get in touch',b2:'See services',whoP:'Working with',who:['Law firms','Insurance agencies','Financial companies','Small business','Startups'],cl1:'Core services',ct1:'What I do personally',cards:[{tag:'Most popular',h:'PC Setup',p:'Home & office computers — from unboxing to fully working',li:['Windows / macOS configuration','Software & licensing','Network & printer setup','Data migration']},{tag:'Best value',h:'Office Turnkey',p:'New office? I set up everything so your team works from day one',li:['Workstations for all staff','Network & Wi-Fi','Email, cloud, shared drives','Security & backup']},{tag:'Recurring',h:'Remote Support',p:'Fast help for any tech issue — no waiting for a visit',li:['Any OS, any device','Viruses, slowdowns, crashes','Available as monthly plan']}],cl2:'Infrastructure',ct2:'Servers & Networks',srvDesc:'Serious infrastructure for businesses that need reliability, security and full control over their data.',srvGrid:[['File Servers','Centralized storage, access control, backups'],['Active Directory','User management, domain, group policies'],['VPN & Security','Secure remote access, firewall setup'],['Cloud & Hybrid','Microsoft 365, Azure, Google Workspace'],['CCTV & Monitoring','Cameras, NVR, remote viewing'],['Structured Cabling','Clean, reliable wired infrastructure']],cl3:'Collaboration',ct3:'Partner services',pnote:'I work with trusted specialists for services outside my core — one contact, coordinated result.',pgrid:[['🌐','Websites & Landing pages','Modern multilingual sites'],['📞','IP Telephony','Virtual PBX, SIP lines, office phones'],['🖨️','Printers & MFP','Supply, setup and maintenance'],['🔒','Access Control','Smart locks, intercoms, badge systems']],cl4:'Best deal',ct4:'Monthly support plan',abonH:'Your IT — on autopilot',abonP:'Fixed monthly fee. Unlimited remote support, priority response, regular maintenance. Predictable cost, no surprises.',abonLabel:'Starting from',abonVal:'Contact us',cl5:'Why us',ct5:'One person. Full responsibility.',why:[['🌍','Hebrew · Russian · English','Work in the language you prefer'],['🏢','Office turnkey','From zero to working — I handle everything'],['💬','We speak human first, tech second','We explain things clearly and patiently — so you always understand what\'s happening, no matter your tech level.'],['📍','Local & personal','Based in Israel, always reachable']],ch2:'Ready to start?',cp:'',lPhone:'Phone',lEmail:'Email',lWeb:'Website',foot:'© 2025 itseder.com · Alexey Pavlenko · Israel'},
-  ru:{dir:'ltr',lang:'ru',pill:'IT-решения · Израиль',h1:'Ваш офис — <em>готов к работе</em><br>с первого дня',hsub:'Настройка офисов под ключ, удалённая поддержка, серверы и инфраструктура — для адвокатских контор, страховых, финансовых компаний и малого бизнеса.',b1:'Написать нам',b2:'Услуги',whoP:'Работаем с',who:['Адвокатские конторы','Страховые компании','Финансовые компании','Малый бизнес','Стартапы'],cl1:'Основные услуги',ct1:'Что я делаю лично',cards:[{tag:'Самое популярное',h:'Настройка ПК',p:'Домашние и офисные компьютеры — от распаковки до полной работы',li:['Настройка Windows / macOS','Установка и лицензирование ПО','Сеть и принтеры','Перенос данных']},{tag:'Лучшая ценность',h:'Офис под ключ',p:'Новый офис? Настрою всё так, чтобы сотрудники сели и сразу работали',li:['Рабочие места для всех сотрудников','Сеть и Wi-Fi','Почта, облако, общие диски','Безопасность и резервные копии']},{tag:'Регулярный',h:'Удалённая поддержка',p:'Быстрая помощь при любой IT-проблеме — без ожидания визита',li:['Любая ОС, любое устройство','Вирусы, зависания, сбои','Доступна как ежемесячный план']}],cl2:'Инфраструктура',ct2:'Серверы и сети',srvDesc:'Серьёзная инфраструктура для бизнеса, которому нужны надёжность, безопасность и контроль над данными.',srvGrid:[['Файловые серверы','Хранение, права доступа, бэкапы'],['Active Directory','Пользователи, домен, политики'],['VPN и безопасность','Удалённый доступ, файрвол'],['Облако и гибрид','Microsoft 365, Azure, Google'],['Видеонаблюдение','Камеры, NVR, удалённый просмотр'],['Кабельная сеть','Чистая проводная инфраструктура']],cl3:'Коллаборации',ct3:'Партнёрские услуги',pnote:'Работаю с проверенными специалистами — вы получаете одного контактного человека и согласованный результат.',pgrid:[['🌐','Сайты и лендинги','Современные многоязычные сайты'],['📞','IP-телефония','Виртуальные АТС, SIP-линии'],['🖨️','Принтеры и МФУ','Поставка, настройка, обслуживание'],['🔒','Контроль доступа','Замки, домофоны, пропуска']],cl4:'Лучшее предложение',ct4:'Ежемесячный план поддержки',abonH:'Ваш IT — на автопилоте',abonP:'Фиксированная ежемесячная плата. Безлимитная удалённая поддержка, приоритетный ответ, регулярное обслуживание. Предсказуемые расходы, никаких сюрпризов.',abonLabel:'Начиная от',abonVal:'Свяжитесь с нами',cl5:'Почему мы',ct5:'Один человек. Полная ответственность.',why:[['🌍','Иврит · Русский · Английский','Работайте на удобном вам языке'],['🏢','Офис под ключ','От нуля до рабочего — берусь за всё'],['💬','Говорим понятно — с уважением и терпением','Объясняем всё доступно, без лишних терминов — так, чтобы вам было комфортно на любом уровне.'],['📍','Местный и личный','В Израиле, знаю рынок и всегда на связи']],ch2:'Готовы начать?',cp:'',lPhone:'Телефон',lEmail:'Почта',lWeb:'Сайт',foot:'© 2025 itseder.com · Алексей Павленко · Израиль'},
-  he:{dir:'rtl',lang:'he',pill:'פתרונות IT · ישראל',h1:'המשרד שלכם — <em>מוכן לעבודה</em><br>מהיום הראשון',hsub:'הקמת IT למשרדים, תמיכה מרחוק, שרתים ותשתיות — עבור משרדי עורכי דין, ביטוח, פיננסים ועסקים קטנים.',b1:'צרו קשר',b2:'השירותים',whoP:'עובדים עם',who:['משרדי עורכי דין','חברות ביטוח','חברות פיננסיות','עסקים קטנים','סטארטאפים'],cl1:'שירותים מרכזיים',ct1:'מה אני עושה באופן אישי',cards:[{tag:'שירותים נפוצים',h:'הגדרת מחשב',p:'מחשבים ביתיים ומשרדיים — תיקונים, שידרוגים וייעוץ',li:['הגדרת Windows / macOS','התקנה ורישוי תוכנות','רשת ומדפסות','העברת נתונים']},{tag:'שירות מקיף למשרד',h:'משרד עד המפתח',p:'משרד חדש? הגדרה/התקנת כל הנדרש לתחילת עבודה מיידית',li:['תחנות עבודה לכל העובדים','תשתית רשת ו-Wi-Fi','אימייל, ענן, כוננים משותפים','אבטחה וגיבויים']},{tag:'שירות שוטף קבוע',h:'תמיכה מרחוק',p:'עזרה מהירה לכל בעיית IT — בלי להמתין לביקור',li:['כל מערכת הפעלה, כל מכשיר','וירוסים, האטות, קריסות','זמין כתוכנית חודשית']}],cl2:'תשתיות',ct2:'שרתים ורשתות',srvDesc:'תשתית רצינית לעסקים שצריכים אמינות, אבטחה ושליטה מלאה בנתונים שלהם.',srvGrid:[['שרתי קבצים','אחסון מרכזי, גישה, גיבויים'],['Active Directory','משתמשים, דומיין, מדיניות'],['VPN ואבטחה','גישה מרחוק, חומת אש'],['ענן והיברידי','Microsoft 365, Azure, Google'],['מצלמות אבטחה','מצלמות, NVR, צפייה מרחוק'],['תשתית כבלים','תשתית קווית נקייה ואמינה']],cl3:'שיתופי פעולה',ct3:'שירותי שותפים',pnote:'אני עובד עם מומחים מוכרים — אתם מקבלים איש קשר אחד ותוצאה מתואמת.',pgrid:[['🌐','אתרים ודפי נחיתה','אתרים מודרניים רב-לשוניים'],['📞','טלפוניית IP','מרכזייה וירטואלית, קווי SIP'],['🖨️','מדפסות ו-MFP','אספקה, הגדרה, תחזוקה'],['🔒','בקרת כניסה','מנעולים חכמים, אינטרקום']],cl4:'העסקה הטובה ביותר',ct4:'תוכנית תמיכה חודשית',abonH:'ה-IT שלכם — בטייס אוטומטי',abonP:'תשלום חודשי קבוע. תמיכה מרחוק ללא הגבלה, מענה עדיפות, תחזוקה שוטפת. עלות צפויה, ללא הפתעות.',abonLabel:'החל מ',abonVal:'צרו קשר',cl5:'למה אנחנו',ct5:'אדם אחד. אחריות מלאה.',why:[['💬','מדברים בשפה שלכם — בבהירות ובכבוד','מסבירים הכל בסבלנות ובאופן מובן, ללא מונחים טכניים — כך שתרגישו בנוח בכל שלב.'],['📍','מקומי ואישי','בישראל, מכיר את השוק ותמיד זמין']],ch2:'מוכנים להתחיל?',cp:'',lPhone:'טלפון',lEmail:'אימייל',lWeb:'אתר',foot:'© 2025 itseder.com · אלכסיי פבלנקו · ישראל'}
+  en:{dir:'ltr',lang:'en',pill:'IT solutions · Israel',h1:'Your office — <em>ready to work</em><br>from day one',hsub:'Full IT setup for offices, remote support, servers and infrastructure — for law firms, insurance, finance and small business across Israel.',b1:'Get in touch',b2:'See services',whoP:'Working with',who:['Law firms','Insurance agencies','Financial companies','Small business','Startups'],cl1:'Core services',ct1:'What I do personally',cards:[{tag:'Most popular',h:'PC Setup',p:'Home & office computers — from unboxing to fully working',li:['Windows / macOS configuration','Software & licensing','Network & printer setup','Data migration']},{tag:'Best value',h:'Office Turnkey',p:'New office? I set up everything so your team works from day one',li:['Workstations for all staff','Network & Wi-Fi','Email, cloud, shared drives','Security & backup']},{tag:'Recurring',h:'Remote Support',p:'Fast help for any tech issue — no waiting for a visit',li:['Any OS, any device','Viruses, slowdowns, crashes','Available as monthly plan']}],cl2:'Infrastructure',ct2:'Servers & Networks',srvDesc:'Serious infrastructure for businesses that need reliability, security and full control over their data.',srvGrid:[['File Servers','Centralized storage, access control, backups'],['Active Directory','User management, domain, group policies'],['VPN & Security','Secure remote access, firewall setup'],['Cloud & Hybrid','Microsoft 365, Azure, Google Workspace'],['CCTV & Monitoring','Cameras, NVR, remote viewing'],['Structured Cabling','Clean, reliable wired infrastructure']],cl3:'Collaboration',ct3:'Partner services',pnote:'I work with trusted specialists for services outside my core — one contact, coordinated result.',pgrid:[['🌐','Websites & Landing pages','Modern multilingual sites'],['📞','IP Telephony','Virtual PBX, SIP lines, office phones'],['🖨️','Printers & MFP','Supply, setup and maintenance'],['🔒','Access Control','Smart locks, intercoms, badge systems']],cl4:'Best deal',ct4:'Monthly support plan',abonH:'Your IT — on autopilot',abonP:'Fixed monthly fee. Unlimited remote support, priority response, regular maintenance. Predictable cost, no surprises.',abonLabel:'Starting from',abonVal:'Contact us',cl5:'Why us',ct5:'One person. Full responsibility.',why:[['🌍','Hebrew · Russian · English','Work in the language you prefer'],['🏢','Office turnkey','From zero to working — I handle everything'],['💬','We speak human first, tech second','We explain things clearly and patiently — so you always understand what\'s happening, no matter your tech level.'],['📍','Local & personal','Based in Israel, always reachable']],ch2:'Ready to start?',cp:'',lPhone:'Phone',lEmail:'Email',lWeb:'Website',waText:'Chat on WhatsApp',foot:'© 2025 itseder.com · Alexey Pavlenko · Israel'},
+  ru:{dir:'ltr',lang:'ru',pill:'IT-решения · Израиль',h1:'Ваш офис — <em>готов к работе</em><br>с первого дня',hsub:'Настройка офисов под ключ, удалённая поддержка, серверы и инфраструктура — для адвокатских контор, страховых, финансовых компаний и малого бизнеса.',b1:'Написать нам',b2:'Услуги',whoP:'Работаем с',who:['Адвокатские конторы','Страховые компании','Финансовые компании','Малый бизнес','Стартапы'],cl1:'Основные услуги',ct1:'Что я делаю лично',cards:[{tag:'Самое популярное',h:'Настройка ПК',p:'Домашние и офисные компьютеры — от распаковки до полной работы',li:['Настройка Windows / macOS','Установка и лицензирование ПО','Сеть и принтеры','Перенос данных']},{tag:'Лучшая ценность',h:'Офис под ключ',p:'Новый офис? Настрою всё так, чтобы сотрудники сели и сразу работали',li:['Рабочие места для всех сотрудников','Сеть и Wi-Fi','Почта, облако, общие диски','Безопасность и резервные копии']},{tag:'Регулярный',h:'Удалённая поддержка',p:'Быстрая помощь при любой IT-проблеме — без ожидания визита',li:['Любая ОС, любое устройство','Вирусы, зависания, сбои','Доступна как ежемесячный план']}],cl2:'Инфраструктура',ct2:'Серверы и сети',srvDesc:'Серьёзная инфраструктура для бизнеса, которому нужны надёжность, безопасность и контроль над данными.',srvGrid:[['Файловые серверы','Хранение, права доступа, бэкапы'],['Active Directory','Пользователи, домен, политики'],['VPN и безопасность','Удалённый доступ, файрвол'],['Облако и гибрид','Microsoft 365, Azure, Google'],['Видеонаблюдение','Камеры, NVR, удалённый просмотр'],['Кабельная сеть','Чистая проводная инфраструктура']],cl3:'Коллаборации',ct3:'Партнёрские услуги',pnote:'Работаю с проверенными специалистами — вы получаете одного контактного человека и согласованный результат.',pgrid:[['🌐','Сайты и лендинги','Современные многоязычные сайты'],['📞','IP-телефония','Виртуальные АТС, SIP-линии'],['🖨️','Принтеры и МФУ','Поставка, настройка, обслуживание'],['🔒','Контроль доступа','Замки, домофоны, пропуска']],cl4:'Лучшее предложение',ct4:'Ежемесячный план поддержки',abonH:'Ваш IT — на автопилоте',abonP:'Фиксированная ежемесячная плата. Безлимитная удалённая поддержка, приоритетный ответ, регулярное обслуживание. Предсказуемые расходы, никаких сюрпризов.',abonLabel:'Начиная от',abonVal:'Свяжитесь с нами',cl5:'Почему мы',ct5:'Один человек. Полная ответственность.',why:[['🌍','Иврит · Русский · Английский','Работайте на удобном вам языке'],['🏢','Офис под ключ','От нуля до рабочего — берусь за всё'],['💬','Говорим понятно — с уважением и терпением','Объясняем всё доступно, без лишних терминов — так, чтобы вам было комфортно на любом уровне.'],['📍','Местный и личный','В Израиле, знаю рынок и всегда на связи']],ch2:'Готовы начать?',cp:'',lPhone:'Телефон',lEmail:'Почта',lWeb:'Сайт',waText:'Написать в WhatsApp',foot:'© 2025 itseder.com · Алексей Павленко · Израиль'},
+  he:{dir:'rtl',lang:'he',pill:'פתרונות IT · ישראל',h1:'המשרד שלכם — <em>מוכן לעבודה</em><br>מהיום הראשון',hsub:'הקמת IT למשרדים, תמיכה מרחוק, שרתים ותשתיות — עבור משרדי עורכי דין, ביטוח, פיננסים ועסקים קטנים.',b1:'צרו קשר',b2:'השירותים',whoP:'עובדים עם',who:['משרדי עורכי דין','חברות ביטוח','חברות פיננסיות','עסקים קטנים','סטארטאפים'],cl1:'שירותים מרכזיים',ct1:'מה אני עושה:',cards:[{tag:'שירותים נפוצים',h:'הגדרת מחשב',p:'מחשבים ביתיים ומשרדיים — תיקונים, שידרוגים וייעוץ',li:['הגדרת Windows / macOS','התקנה ורישוי תוכנות','רשת ומדפסות','העברת נתונים']},{tag:'שירות מקיף למשרד',h:'משרד עד המפתח',p:'משרד חדש? הגדרה/התקנת כל הנדרש לתחילת עבודה מיידית',li:['תחנות עבודה לכל העובדים','תשתית רשת ו-Wi-Fi','אימייל, ענן, כוננים משותפים','אבטחה וגיבויים']},{tag:'שירות שוטף קבוע',h:'תמיכה מרחוק',p:'עזרה מהירה לכל בעיית IT — בלי להמתין לביקור',li:['כל מערכת הפעלה, כל מכשיר','וירוסים, האטות, קריסות','זמין כתוכנית חודשית']}],cl2:'תשתיות',ct2:'שרתים ורשתות',srvDesc:'תשתית רצינית לעסקים שצריכים אמינות, אבטחה ושליטה מלאה בנתונים שלהם.',srvGrid:[['שרתי קבצים','אחסון מרכזי, גישה, גיבויים'],['Active Directory','משתמשים, דומיין, מדיניות'],['VPN ואבטחה','גישה מרחוק, חומת אש'],['ענן והיברידי','Microsoft 365, Azure, Google'],['מצלמות אבטחה','מצלמות, NVR, צפייה מרחוק'],['תשתית כבלים','תשתית קווית נקייה ואמינה']],cl3:'שיתופי פעולה',ct3:'שירותי שותפים',pnote:'אני עובד עם מומחים מוכרים — אתם מקבלים איש קשר אחד ותוצאה מתואמת.',pgrid:[['🌐','אתרים ודפי נחיתה','אתרים מודרניים רב-לשוניים'],['📞','טלפוניית IP','מרכזייה וירטואלית, קווי SIP'],['🖨️','מדפסות ו-MFP','אספקה, הגדרה, תחזוקה'],['🔒','בקרת כניסה','מנעולים חכמים, אינטרקום']],cl4:'העסקה הטובה ביותר',ct4:'תוכנית תמיכה חודשית',abonH:'ה-IT שלכם — בטייס אוטומטי',abonP:'תשלום חודשי קבוע. תמיכה מרחוק ללא הגבלה, מענה עדיפות, תחזוקה שוטפת. עלות צפויה, ללא הפתעות.',abonLabel:'החל מ',abonVal:'צרו קשר',cl5:'למה אנחנו',ct5:'אדם אחד. אחריות מלאה.',why:[['💬','מדברים בשפה שלכם — בבהירות ובכבוד','מסבירים הכל בסבלנות ובאופן מובן, ללא מונחים טכניים — כך שתרגישו בנוח בכל שלב.'],['📍','מקומי ואישי','בישראל, מכיר את השוק ותמיד זמין']],ch2:'מוכנים להתחיל?',cp:'',lPhone:'טלפון',lEmail:'אימייל',lWeb:'אתר',waText:'כתבו לנו ב-WhatsApp',foot:'© 2025 itseder.com · אלכסיי פבלנקו · ישראל'}
 };
 
 function setLang(l,btn){
@@ -309,12 +373,16 @@ function setLang(l,btn){
   }).join('');
   document.getElementById('ch2').textContent=d.ch2;
   document.getElementById('cp').textContent=d.cp;
+  document.getElementById('wa-text').textContent=d.waText||'WhatsApp';
   document.getElementById('foot').textContent=d.foot;
+  var tip=document.getElementById('wa-tip');
+  if(tip){tip.textContent=d.dir==='rtl'?'💬 כתבו לנו ב-WhatsApp':d.lang==='ru'?'💬 Напишите нам в WhatsApp':'💬 Chat with us on WhatsApp';}
   document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
   if(btn)btn.classList.add('on');
 }
 
 setLang('he', document.querySelector('.lb.on'));
 </script>
+
 </body>
 </html>
