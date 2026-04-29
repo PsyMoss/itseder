@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="IT solutions for offices, law firms, insurance and small business in Israel. Hebrew, Russian, English.">
+<meta name="description" content="פתרונות IT למשרדים, משרדי עורכי דין, ביטוח ועסקים קטנים בישראל">
 <title>itseder — IT solutions · Israel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,83 +21,66 @@
 }
 html{scroll-behavior:smooth}
 body{
-  background:var(--bg);
-  color:var(--text);
+  background:var(--bg);color:var(--text);
   font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
-  font-size:17px;
-  line-height:1.65;
-  -webkit-text-size-adjust:100%;
-  text-size-adjust:100%;
+  font-size:17px;line-height:1.65;
+  -webkit-text-size-adjust:100%;text-size-adjust:100%;
 }
-body[dir="rtl"]{font-family:'Inter',system-ui,-apple-system,'Segoe UI','Arial Hebrew',sans-serif}
 a{color:inherit;text-decoration:none}
 
-/* NAV */
+/* ── NAV ── */
 nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:1rem 1.25rem;
-  background:rgba(15,14,12,0.97);
-  border-bottom:1px solid var(--border);
+  background:rgba(15,14,12,0.97);border-bottom:1px solid var(--border);
   position:sticky;top:0;z-index:100;
   backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
 }
 .logo{font-family:'Syne',system-ui,sans-serif;font-size:1.4rem;font-weight:700;color:var(--text);letter-spacing:-.02em}
 .logo em{color:var(--acc);font-style:normal}
 .langs{display:flex;gap:6px}
-.lb{
-  padding:7px 14px;
-  border:1px solid var(--border);background:transparent;
-  border-radius:20px;font-size:13px;font-family:inherit;
-  cursor:pointer;color:var(--muted);transition:all .2s;
-  -webkit-tap-highlight-color:transparent;min-height:44px;
-}
+.lb{padding:7px 14px;border:1px solid var(--border);background:transparent;border-radius:20px;font-size:13px;font-family:inherit;cursor:pointer;color:var(--muted);transition:all .2s;-webkit-tap-highlight-color:transparent;min-height:44px}
 .lb.on{background:var(--acc);color:#0F0E0C;border-color:var(--acc);font-weight:500}
 
-/* HERO */
+/* ── HERO — always centered ── */
 .hero{padding:3.5rem 1.25rem 2.5rem;max-width:820px;margin:0 auto;text-align:center;position:relative}
 .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(500px,100%);height:240px;background:radial-gradient(ellipse,rgba(232,146,74,.07) 0%,transparent 70%);pointer-events:none}
 .pill{display:inline-flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border-acc);border-radius:24px;padding:6px 16px;font-size:12px;color:var(--acc);margin-bottom:1.5rem;letter-spacing:.05em;text-transform:uppercase}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--acc);animation:blink 2s infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-h1{font-family:'Syne',system-ui,sans-serif;font-size:clamp(2rem,6vw,3rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.1rem}
+h1{font-family:'Syne',system-ui,sans-serif;font-size:clamp(2rem,6vw,3rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:1.1rem}
 h1 em{color:var(--acc);font-style:normal}
 .hero-sub{font-size:clamp(1rem,3vw,1.05rem);color:var(--muted);line-height:1.8;max-width:520px;margin:0 auto 2rem;font-weight:300}
 .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.bp{padding:15px 28px;background:var(--acc);color:#0F0E0C;border:none;border-radius:10px;font-family:inherit;font-size:16px;font-weight:500;cursor:pointer;transition:opacity .2s;-webkit-tap-highlight-color:transparent;min-height:50px}
-.bp:hover{opacity:.85}
-.bs{padding:15px 28px;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:10px;font-family:inherit;font-size:16px;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;min-height:50px}
-.bs:hover{border-color:var(--acc);color:var(--acc)}
+.bp{padding:15px 28px;background:var(--acc);color:#0F0E0C;border:none;border-radius:10px;font-family:inherit;font-size:16px;font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:50px}
+.bs{padding:15px 28px;background:transparent;color:var(--text);border:1px solid var(--border);border-radius:10px;font-family:inherit;font-size:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;min-height:50px}
 
-/* WHO */
+/* ── WHO — always centered ── */
 .who{padding:.5rem 1.25rem 2rem;max-width:820px;margin:0 auto;text-align:center}
 .who-p{font-size:12px;letter-spacing:.07em;color:var(--muted);text-transform:uppercase;margin-bottom:.9rem}
 .who-tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .wtag{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:7px 14px;font-size:13px;color:var(--muted)}
-
 .sep{border:none;border-top:1px solid var(--border);margin:0 1.25rem}
 
-/* SECTIONS */
+/* ── WRAP — text direction from body ── */
 .wrap{padding:2.5rem 1.25rem;max-width:820px;margin:0 auto}
 .slabel{font-size:11px;letter-spacing:.1em;color:var(--acc);text-transform:uppercase;margin-bottom:.7rem;font-weight:500;display:block}
 .slabel.grn{color:var(--acc2)}
 .slabel.blu{color:var(--acc3)}
 .stitle{font-family:'Syne',system-ui,sans-serif;font-size:clamp(1.5rem,4vw,1.9rem);font-weight:700;letter-spacing:-.02em;margin-bottom:1.5rem}
 
-/* CORE CARDS */
+/* ── CORE CARDS ── */
 .core-grid{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:600px){.core-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}}
-.scard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.4rem;transition:border-color .2s}
-.scard:hover{border-color:var(--border-acc)}
+.scard{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.4rem}
 .sc-tag{display:inline-block;padding:4px 11px;border-radius:5px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:.9rem;font-weight:500;background:rgba(232,146,74,.13);color:var(--acc)}
 .scard h3{font-size:16px;font-weight:500;margin-bottom:6px;color:var(--text)}
 .scard p{font-size:14px;color:var(--muted);line-height:1.65;font-weight:300}
 .scard ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:7px}
-.scard ul li{font-size:14px;color:var(--muted);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.scard ul li{font-size:14px;color:var(--muted);line-height:1.5;display:flex;align-items:flex-start;gap:8px}
 .scard ul li::before{content:'→';color:var(--acc);flex-shrink:0;font-size:14px}
-[dir="rtl"] .scard ul li{flex-direction:row-reverse}
-[dir="rtl"] .scard ul li::before{content:'←'}
 
-/* SERVER BLOCK */
+/* ── SERVER ── */
 .server-block{background:var(--bg3);border:1px solid var(--border-grn);border-radius:14px;padding:1.5rem}
 .server-desc{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:1.1rem}
 .server-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -106,53 +89,79 @@ h1 em{color:var(--acc);font-style:normal}
 .srv-item h4{font-size:14px;font-weight:500;margin-bottom:4px;color:var(--text)}
 .srv-item p{font-size:13px;color:var(--muted);line-height:1.5;font-weight:300}
 
-/* PARTNER */
+/* ── PARTNER ── */
 .partner-block{background:var(--bg3);border:1px solid var(--border-blu);border-radius:14px;padding:1.5rem}
 .partner-note{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:1.2rem}
 .partner-grid{display:grid;grid-template-columns:1fr;gap:10px}
 @media(min-width:500px){.partner-grid{grid-template-columns:1fr 1fr}}
+/* pcard: icon + text, direction-aware */
 .pcard{background:var(--bg4);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;display:flex;align-items:flex-start;gap:12px}
 .p-icon{width:36px;height:36px;border-radius:8px;background:rgba(122,142,232,.1);border:1px solid var(--border-blu);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.pcard h4{font-size:15px;font-weight:500;margin-bottom:3px;color:var(--text)}
-.pcard p{font-size:13px;color:var(--muted);line-height:1.5;font-weight:300}
+.pcard-text{flex:1;min-width:0}
+.pcard-text h4{font-size:15px;font-weight:500;margin-bottom:3px;color:var(--text)}
+.pcard-text p{font-size:13px;color:var(--muted);line-height:1.5;font-weight:300}
 
-/* ABON */
-.abon{background:linear-gradient(135deg,rgba(232,146,74,.08) 0%,rgba(74,158,122,.06) 100%);border:1px solid var(--border-acc);border-radius:14px;padding:1.5rem;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
-.abon-text{flex:1;min-width:200px}
+/* ── ABON ── */
+.abon{background:linear-gradient(135deg,rgba(232,146,74,.08) 0%,rgba(74,158,122,.06) 100%);border:1px solid var(--border-acc);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:1.2rem}
+@media(min-width:560px){.abon{flex-direction:row;align-items:center;flex-wrap:wrap}}
+.abon-text{flex:1;min-width:0}
 .abon-text h3{font-family:'Syne',system-ui,sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.5rem}
 .abon-text p{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300}
-.abon-badge{background:var(--acc);color:#0F0E0C;border-radius:10px;padding:1rem 1.3rem;text-align:center;flex-shrink:0}
+.abon-badge{background:var(--acc);color:#0F0E0C;border-radius:10px;padding:1rem 1.3rem;text-align:center;align-self:flex-start}
+@media(min-width:560px){.abon-badge{flex-shrink:0;align-self:center}}
 .ab-label{font-size:11px;letter-spacing:.05em;text-transform:uppercase;opacity:.75;margin-bottom:3px}
 .ab-val{font-family:'Syne',system-ui,sans-serif;font-size:1.05rem;font-weight:700}
 
-/* WHY */
+/* ── WHY ── */
 .why-inner{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:1.75rem}
 .why-header{margin-bottom:1.25rem}
 .why-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
 @media(min-width:500px){.why-grid{grid-template-columns:1fr 1fr}}
-.wi{padding:1.1rem 1.2rem;background:var(--bg2);display:flex;gap:12px;align-items:flex-start}
+.wi{padding:1.1rem 1.2rem;background:var(--bg2);display:flex;align-items:flex-start;gap:12px}
 .wi-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.wi-body{flex:1;min-width:0}
 .wi-body h4{font-size:15px;font-weight:500;margin-bottom:4px;color:var(--text)}
 .wi-body p{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300}
 .wi.full{grid-column:1/-1;background:var(--bg3);border-top:1px solid var(--border-acc)}
 .wi.full .wi-body h4{color:var(--acc);font-size:15px}
 .wi.full .wi-body p{font-size:14px}
-[dir="rtl"] .wi{flex-direction:row-reverse}
 
-/* CONTACT */
-.contact-card{background:var(--bg3);border:1px solid var(--border-acc);border-radius:14px;padding:2.5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
-.contact-card::after{content:'';position:absolute;bottom:-80px;right:-80px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(74,158,122,.08) 0%,transparent 70%)}
-.contact-card h2{font-family:'Syne',system-ui,sans-serif;font-size:clamp(1.5rem,4vw,2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.7rem}
+/* ── CONTACT — always centered ── */
+.contact-card{background:var(--bg3);border:1px solid var(--border-acc);border-radius:16px;padding:2.5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.contact-card::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(232,146,74,.05) 0%,transparent 70%);pointer-events:none}
+.contact-card::after{content:'';position:absolute;bottom:-80px;right:-80px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(74,158,122,.07) 0%,transparent 70%)}
+.contact-card h2{font-family:'Syne',system-ui,sans-serif;font-size:clamp(1rem,3vw,1.2rem);font-weight:400;letter-spacing:.02em;margin-bottom:1.5rem;color:var(--muted)}
 .contact-card>p{font-size:15px;color:var(--muted);margin-bottom:2rem;line-height:1.75;font-weight:300}
-.cname{font-family:'Syne',system-ui,sans-serif;font-size:1.15rem;font-weight:600;color:var(--acc);margin-bottom:8px}
-.ltags{display:flex;gap:6px;justify-content:center;margin-bottom:1.4rem}
-.ltag{background:var(--bg4);border:1px solid var(--border);border-radius:5px;padding:4px 11px;font-size:12px;color:var(--muted);letter-spacing:.05em}
-.clinks{display:flex;flex-direction:column;gap:12px;align-items:center}
-.clink{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--muted);transition:color .2s;min-height:44px;padding:2px 0}
-.clink:hover{color:var(--acc)}
-.ci{width:34px;height:34px;border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;background:var(--bg4);flex-shrink:0}
-
+.cname{font-family:'Syne',system-ui,sans-serif;font-size:clamp(1.8rem,6vw,2.4rem);font-weight:700;color:var(--text);margin-bottom:1rem;letter-spacing:-.02em}
+.ltags{display:flex;gap:8px;justify-content:center;margin-bottom:2rem}
+.ltag{background:var(--bg4);border:1px solid var(--border-acc);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--acc);letter-spacing:.06em;font-weight:500}
+.clinks{display:flex;flex-direction:column;gap:10px;width:100%;position:relative;z-index:1}
+.clink{display:flex;align-items:center;justify-content:center;gap:12px;font-size:16px;color:var(--text);transition:all .2s;min-height:52px;background:var(--bg4);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.2rem;text-decoration:none;text-align:center}
+.clink:hover{border-color:var(--acc);color:var(--acc);background:var(--bg3)}
+.ci{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--bg3);border:1px solid var(--border);flex-shrink:0}
+.clink-label{display:none}
+.clink-val{font-size:16px;font-weight:400}
 footer{text-align:center;padding:1.75rem 1.25rem;font-size:13px;color:var(--muted);border-top:1px solid var(--border);line-height:1.6}
+
+/* ════════════════════════
+   RTL — direction:rtl on body handles text automatically.
+   We only need to flip flex rows.
+   ════════════════════════ */
+[dir="rtl"] .pcard{flex-direction:row-reverse;text-align:right}
+[dir="rtl"] .pcard-text{text-align:right}
+[dir="rtl"] .wi{flex-direction:row-reverse}
+[dir="rtl"] .abon{flex-direction:row-reverse}
+[dir="rtl"] .abon-text{text-align:right}
+[dir="rtl"] .abon-text h3{text-align:right}
+[dir="rtl"] .abon-text p{text-align:right}
+[dir="rtl"] .clink{flex-direction:row-reverse}
+/* sc-tag: own line, right-aligned */
+[dir="rtl"] .sc-tag{display:block;text-align:right;float:none;margin-bottom:.9rem}
+/* list items RTL: full width, text right, colored dot on right */
+[dir="rtl"] .scard ul li{display:block;text-align:right;padding-right:16px;position:relative}
+[dir="rtl"] .scard ul li::before{content:'•';color:var(--acc);position:absolute;right:0;top:0}
+[dir="rtl"] .scard::after{content:'';display:table;clear:both}
+/* nav: logo stays left, langs right — keep as-is for brand */
 </style>
 </head>
 <body id="body" dir="rtl" lang="he">
@@ -210,7 +219,7 @@ footer{text-align:center;padding:1.75rem 1.25rem;font-size:13px;color:var(--mute
 <hr class="sep">
 
 <section class="wrap">
-  <span class="slabel" id="cl4"></span>
+  <span class="slabel" id="cl4" style="display:none"></span>
   <h2 class="stitle" id="ct4"></h2>
   <div class="abon">
     <div class="abon-text">
@@ -242,9 +251,9 @@ footer{text-align:center;padding:1.75rem 1.25rem;font-size:13px;color:var(--mute
     <div class="cname">Alexey Pavlenko</div>
     <div class="ltags"><span class="ltag">EN</span><span class="ltag">RU</span><span class="ltag">HE</span></div>
     <div class="clinks">
-      <a class="clink" href="tel:+972525983311"><div class="ci">📱</div><span>052-598-3311</span></a>
-      <a class="clink" href="mailto:alexypv@gmail.com"><div class="ci">✉️</div><span>alexypv@gmail.com</span></a>
-      <a class="clink" href="http://itseder.com" target="_blank" rel="noopener"><div class="ci">🌐</div><span>itseder.com</span></a>
+      <a class="clink" href="tel:+972525983311"><div class="ci">📱</div><div class="clink-val">052-598-3311</div></a>
+      <a class="clink" href="mailto:alexypv@gmail.com"><div class="ci">✉️</div><div class="clink-val">alexypv@gmail.com</div></a>
+      <a class="clink" href="http://itseder.com" target="_blank" rel="noopener"><div class="ci">🌐</div><div class="clink-val">itseder.com</div></a>
     </div>
   </div>
 </section>
@@ -253,9 +262,9 @@ footer{text-align:center;padding:1.75rem 1.25rem;font-size:13px;color:var(--mute
 
 <script>
 var T={
-  en:{dir:'ltr',lang:'en',pill:'IT solutions · Israel',h1:'Your office — <em>ready to work</em><br>from day one',hsub:'Full IT setup for offices, remote support, servers and infrastructure — for law firms, insurance, finance and small business across Israel.',b1:'Get in touch',b2:'See services',whoP:'Working with',who:['Law firms','Insurance agencies','Financial companies','Small business','Startups'],cl1:'Core services',ct1:'What I do personally',cards:[{tag:'Most popular',h:'PC Setup',p:'Home & office computers — from unboxing to fully working',li:['Windows / macOS configuration','Software & licensing','Network & printer setup','Data migration']},{tag:'Best value',h:'Office Turnkey',p:'New office? I set up everything so your team works from day one',li:['Workstations for all staff','Network & Wi-Fi','Email, cloud, shared drives','Security & backup']},{tag:'Recurring',h:'Remote Support',p:'Fast help for any tech issue — no waiting for a visit',li:['Any OS, any device','Viruses, slowdowns, crashes','Available as monthly plan']}],cl2:'Infrastructure',ct2:'Servers & Networks',srvDesc:'Serious infrastructure for businesses that need reliability, security and full control over their data.',srvGrid:[['File Servers','Centralized storage, access control, backups'],['Active Directory','User management, domain, group policies'],['VPN & Security','Secure remote access, firewall setup'],['Cloud & Hybrid','Microsoft 365, Azure, Google Workspace'],['CCTV & Monitoring','Cameras, NVR, remote viewing'],['Structured Cabling','Clean, reliable wired infrastructure']],cl3:'Collaboration',ct3:'Partner services',pnote:'I work with trusted specialists for services outside my core — one contact, coordinated result.',pgrid:[['🌐','Websites & Landing pages','Modern multilingual sites'],['📞','IP Telephony','Virtual PBX, SIP lines, office phones'],['🖨️','Printers & MFP','Supply, setup and maintenance'],['🔒','Access Control','Smart locks, intercoms, badge systems']],cl4:'Best deal',ct4:'Monthly support plan',abonH:'Your IT — on autopilot',abonP:'Fixed monthly fee. Unlimited remote support, priority response, regular maintenance. Predictable cost, no surprises.',abonLabel:'Starting from',abonVal:'Contact us',cl5:'Why us',ct5:'One person. Full responsibility.',why:[['🌍','Hebrew · Russian · English','Work in the language you prefer'],['🏢','Office turnkey','From zero to working — I handle everything'],['💬','We speak human first, tech second','We explain things clearly and patiently — so you always understand what\'s happening, no matter your tech level.'],['📍','Local & personal','Based in Israel, always reachable']],ch2:'Ready to start?',cp:'Tell me about your office or project — I\'ll get back to you quickly and in your language.',foot:'© 2025 itseder.com · Alexey Pavlenko · Israel'},
-  ru:{dir:'ltr',lang:'ru',pill:'IT-решения · Израиль',h1:'Ваш офис — <em>готов к работе</em><br>с первого дня',hsub:'Настройка офисов под ключ, удалённая поддержка, серверы и инфраструктура — для адвокатских контор, страховых, финансовых компаний и малого бизнеса.',b1:'Написать нам',b2:'Услуги',whoP:'Работаем с',who:['Адвокатские конторы','Страховые компании','Финансовые компании','Малый бизнес','Стартапы'],cl1:'Основные услуги',ct1:'Что я делаю лично',cards:[{tag:'Самое популярное',h:'Настройка ПК',p:'Домашние и офисные компьютеры — от распаковки до полной работы',li:['Настройка Windows / macOS','Установка и лицензирование ПО','Сеть и принтеры','Перенос данных']},{tag:'Лучшая ценность',h:'Офис под ключ',p:'Новый офис? Настрою всё так, чтобы сотрудники сели и сразу работали',li:['Рабочие места для всех сотрудников','Сеть и Wi-Fi','Почта, облако, общие диски','Безопасность и резервные копии']},{tag:'Регулярный',h:'Удалённая поддержка',p:'Быстрая помощь при любой IT-проблеме — без ожидания визита',li:['Любая ОС, любое устройство','Вирусы, зависания, сбои','Доступна как ежемесячный план']}],cl2:'Инфраструктура',ct2:'Серверы и сети',srvDesc:'Серьёзная инфраструктура для бизнеса, которому нужны надёжность, безопасность и контроль над данными.',srvGrid:[['Файловые серверы','Хранение, права доступа, бэкапы'],['Active Directory','Пользователи, домен, политики'],['VPN и безопасность','Удалённый доступ, файрвол'],['Облако и гибрид','Microsoft 365, Azure, Google'],['Видеонаблюдение','Камеры, NVR, удалённый просмотр'],['Кабельная сеть','Чистая проводная инфраструктура']],cl3:'Коллаборации',ct3:'Партнёрские услуги',pnote:'Работаю с проверенными специалистами — вы получаете одного контактного человека и согласованный результат.',pgrid:[['🌐','Сайты и лендинги','Современные многоязычные сайты'],['📞','IP-телефония','Виртуальные АТС, SIP-линии'],['🖨️','Принтеры и МФУ','Поставка, настройка, обслуживание'],['🔒','Контроль доступа','Замки, домофоны, пропуска']],cl4:'Лучшее предложение',ct4:'Ежемесячный план поддержки',abonH:'Ваш IT — на автопилоте',abonP:'Фиксированная ежемесячная плата. Безлимитная удалённая поддержка, приоритетный ответ, регулярное обслуживание. Предсказуемые расходы, никаких сюрпризов.',abonLabel:'Начиная от',abonVal:'Свяжитесь с нами',cl5:'Почему мы',ct5:'Один человек. Полная ответственность.',why:[['🌍','Иврит · Русский · Английский','Работайте на удобном вам языке'],['🏢','Офис под ключ','От нуля до рабочего — берусь за всё'],['💬','Говорим понятно — с уважением и терпением','Объясняем всё доступно, без лишних терминов — так, чтобы вам было комфортно на любом уровне знания технологий.'],['📍','Местный и личный','В Израиле, знаю рынок и всегда на связи']],ch2:'Готовы начать?',cp:'Расскажите об офисе или проекте — отвечу быстро и на вашем языке.',foot:'© 2025 itseder.com · Алексей Павленко · Израиль'},
-  he:{dir:'rtl',lang:'he',pill:'פתרונות IT · ישראל',h1:'המשרד שלכם — <em>מוכן לעבודה</em><br>מהיום הראשון',hsub:'הקמת IT למשרדים, תמיכה מרחוק, שרתים ותשתיות — עבור משרדי עורכי דין, ביטוח, פיננסים ועסקים קטנים.',b1:'צרו קשר',b2:'השירותים',whoP:'עובדים עם',who:['משרדי עורכי דין','חברות ביטוח','חברות פיננסיות','עסקים קטנים','סטארטאפים'],cl1:'שירותים מרכזיים',ct1:'מה אני עושה באופן אישי',cards:[{tag:'הכי פופולרי',h:'הגדרת מחשב',p:'מחשבים ביתיים ומשרדיים — מהפתיחת הקרטון עד לעבודה מלאה',li:['הגדרת Windows / macOS','התקנה ורישוי תוכנות','רשת ומדפסות','העברת נתונים']},{tag:'הכי משתלם',h:'משרד תוך הפנייה',p:'משרד חדש? אגדיר הכל כך שהצוות ישב וייעבד מיד',li:['תחנות עבודה לכל העובדים','תשתית רשת ו-Wi-Fi','אימייל, ענן, כוננים משותפים','אבטחה וגיבויים']},{tag:'הכנסה קבועה',h:'תמיכה מרחוק',p:'עזרה מהירה לכל בעיית IT — בלי להמתין לביקור',li:['כל מערכת הפעלה, כל מכשיר','וירוסים, האטות, קריסות','זמין כתוכנית חודשית']}],cl2:'תשתיות',ct2:'שרתים ורשתות',srvDesc:'תשתית רצינית לעסקים שצריכים אמינות, אבטחה ושליטה מלאה בנתונים שלהם.',srvGrid:[['שרתי קבצים','אחסון מרכזי, גישה, גיבויים'],['Active Directory','משתמשים, דומיין, מדיניות'],['VPN ואבטחה','גישה מרחוק, חומת אש'],['ענן והיברידי','Microsoft 365, Azure, Google'],['מצלמות אבטחה','מצלמות, NVR, צפייה מרחוק'],['תשתית כבלים','תשתית קווית נקייה ואמינה']],cl3:'שיתופי פעולה',ct3:'שירותי שותפים',pnote:'אני עובד עם מומחים מוכרים — אתם מקבלים איש קשר אחד ותוצאה מתואמת.',pgrid:[['🌐','אתרים ודפי נחיתה','אתרים מודרניים רב-לשוניים'],['📞','טלפוניית IP','מרכזייה וירטואלית, קווי SIP'],['🖨️','מדפסות ו-MFP','אספקה, הגדרה, תחזוקה'],['🔒','בקרת כניסה','מנעולים חכמים, אינטרקום']],cl4:'העסקה הטובה ביותר',ct4:'תוכנית תמיכה חודשית',abonH:'ה-IT שלכם — בטייס אוטומטי',abonP:'תשלום חודשי קבוע. תמיכה מרחוק ללא הגבלה, מענה עדיפות, תחזוקה שוטפת. עלות צפויה, ללא הפתעות.',abonLabel:'החל מ',abonVal:'צרו קשר',cl5:'למה אנחנו',ct5:'אדם אחד. אחריות מלאה.',why:[['🌍','עברית · רוסית · אנגלית','עבדו בשפה שנוחה לכם'],['🏢','משרד תוך הפנייה','מאפס לעובד — אני מטפל בהכל'],['💬','מדברים בשפה שלכם — בבהירות ובכבוד','מסבירים הכל בסבלנות ובאופן מובן, ללא מונחים טכניים — כך שתרגישו בנוח בכל שלב.'],['📍','מקומי ואישי','בישראל, מכיר את השוק ותמיד זמין']],ch2:'מוכנים להתחיל?',cp:'ספרו לי על המשרד או הפרויקט — אחזור אליכם מהר ובשפה שלכם.',foot:'© 2025 itseder.com · אלכסיי פבלנקו · ישראל'}
+  en:{dir:'ltr',lang:'en',pill:'IT solutions · Israel',h1:'Your office — <em>ready to work</em><br>from day one',hsub:'Full IT setup for offices, remote support, servers and infrastructure — for law firms, insurance, finance and small business across Israel.',b1:'Get in touch',b2:'See services',whoP:'Working with',who:['Law firms','Insurance agencies','Financial companies','Small business','Startups'],cl1:'Core services',ct1:'What I do personally',cards:[{tag:'Most popular',h:'PC Setup',p:'Home & office computers — from unboxing to fully working',li:['Windows / macOS configuration','Software & licensing','Network & printer setup','Data migration']},{tag:'Best value',h:'Office Turnkey',p:'New office? I set up everything so your team works from day one',li:['Workstations for all staff','Network & Wi-Fi','Email, cloud, shared drives','Security & backup']},{tag:'Recurring',h:'Remote Support',p:'Fast help for any tech issue — no waiting for a visit',li:['Any OS, any device','Viruses, slowdowns, crashes','Available as monthly plan']}],cl2:'Infrastructure',ct2:'Servers & Networks',srvDesc:'Serious infrastructure for businesses that need reliability, security and full control over their data.',srvGrid:[['File Servers','Centralized storage, access control, backups'],['Active Directory','User management, domain, group policies'],['VPN & Security','Secure remote access, firewall setup'],['Cloud & Hybrid','Microsoft 365, Azure, Google Workspace'],['CCTV & Monitoring','Cameras, NVR, remote viewing'],['Structured Cabling','Clean, reliable wired infrastructure']],cl3:'Collaboration',ct3:'Partner services',pnote:'I work with trusted specialists for services outside my core — one contact, coordinated result.',pgrid:[['🌐','Websites & Landing pages','Modern multilingual sites'],['📞','IP Telephony','Virtual PBX, SIP lines, office phones'],['🖨️','Printers & MFP','Supply, setup and maintenance'],['🔒','Access Control','Smart locks, intercoms, badge systems']],cl4:'Best deal',ct4:'Monthly support plan',abonH:'Your IT — on autopilot',abonP:'Fixed monthly fee. Unlimited remote support, priority response, regular maintenance. Predictable cost, no surprises.',abonLabel:'Starting from',abonVal:'Contact us',cl5:'Why us',ct5:'One person. Full responsibility.',why:[['🌍','Hebrew · Russian · English','Work in the language you prefer'],['🏢','Office turnkey','From zero to working — I handle everything'],['💬','We speak human first, tech second','We explain things clearly and patiently — so you always understand what\'s happening, no matter your tech level.'],['📍','Local & personal','Based in Israel, always reachable']],ch2:'Ready to start?',cp:'',lPhone:'Phone',lEmail:'Email',lWeb:'Website',foot:'© 2025 itseder.com · Alexey Pavlenko · Israel'},
+  ru:{dir:'ltr',lang:'ru',pill:'IT-решения · Израиль',h1:'Ваш офис — <em>готов к работе</em><br>с первого дня',hsub:'Настройка офисов под ключ, удалённая поддержка, серверы и инфраструктура — для адвокатских контор, страховых, финансовых компаний и малого бизнеса.',b1:'Написать нам',b2:'Услуги',whoP:'Работаем с',who:['Адвокатские конторы','Страховые компании','Финансовые компании','Малый бизнес','Стартапы'],cl1:'Основные услуги',ct1:'Что я делаю лично',cards:[{tag:'Самое популярное',h:'Настройка ПК',p:'Домашние и офисные компьютеры — от распаковки до полной работы',li:['Настройка Windows / macOS','Установка и лицензирование ПО','Сеть и принтеры','Перенос данных']},{tag:'Лучшая ценность',h:'Офис под ключ',p:'Новый офис? Настрою всё так, чтобы сотрудники сели и сразу работали',li:['Рабочие места для всех сотрудников','Сеть и Wi-Fi','Почта, облако, общие диски','Безопасность и резервные копии']},{tag:'Регулярный',h:'Удалённая поддержка',p:'Быстрая помощь при любой IT-проблеме — без ожидания визита',li:['Любая ОС, любое устройство','Вирусы, зависания, сбои','Доступна как ежемесячный план']}],cl2:'Инфраструктура',ct2:'Серверы и сети',srvDesc:'Серьёзная инфраструктура для бизнеса, которому нужны надёжность, безопасность и контроль над данными.',srvGrid:[['Файловые серверы','Хранение, права доступа, бэкапы'],['Active Directory','Пользователи, домен, политики'],['VPN и безопасность','Удалённый доступ, файрвол'],['Облако и гибрид','Microsoft 365, Azure, Google'],['Видеонаблюдение','Камеры, NVR, удалённый просмотр'],['Кабельная сеть','Чистая проводная инфраструктура']],cl3:'Коллаборации',ct3:'Партнёрские услуги',pnote:'Работаю с проверенными специалистами — вы получаете одного контактного человека и согласованный результат.',pgrid:[['🌐','Сайты и лендинги','Современные многоязычные сайты'],['📞','IP-телефония','Виртуальные АТС, SIP-линии'],['🖨️','Принтеры и МФУ','Поставка, настройка, обслуживание'],['🔒','Контроль доступа','Замки, домофоны, пропуска']],cl4:'Лучшее предложение',ct4:'Ежемесячный план поддержки',abonH:'Ваш IT — на автопилоте',abonP:'Фиксированная ежемесячная плата. Безлимитная удалённая поддержка, приоритетный ответ, регулярное обслуживание. Предсказуемые расходы, никаких сюрпризов.',abonLabel:'Начиная от',abonVal:'Свяжитесь с нами',cl5:'Почему мы',ct5:'Один человек. Полная ответственность.',why:[['🌍','Иврит · Русский · Английский','Работайте на удобном вам языке'],['🏢','Офис под ключ','От нуля до рабочего — берусь за всё'],['💬','Говорим понятно — с уважением и терпением','Объясняем всё доступно, без лишних терминов — так, чтобы вам было комфортно на любом уровне.'],['📍','Местный и личный','В Израиле, знаю рынок и всегда на связи']],ch2:'Готовы начать?',cp:'',lPhone:'Телефон',lEmail:'Почта',lWeb:'Сайт',foot:'© 2025 itseder.com · Алексей Павленко · Израиль'},
+  he:{dir:'rtl',lang:'he',pill:'פתרונות IT · ישראל',h1:'המשרד שלכם — <em>מוכן לעבודה</em><br>מהיום הראשון',hsub:'הקמת IT למשרדים, תמיכה מרחוק, שרתים ותשתיות — עבור משרדי עורכי דין, ביטוח, פיננסים ועסקים קטנים.',b1:'צרו קשר',b2:'השירותים',whoP:'עובדים עם',who:['משרדי עורכי דין','חברות ביטוח','חברות פיננסיות','עסקים קטנים','סטארטאפים'],cl1:'שירותים מרכזיים',ct1:'מה אני עושה באופן אישי',cards:[{tag:'שירותים נפוצים',h:'הגדרת מחשב',p:'מחשבים ביתיים ומשרדיים — תיקונים, שידרוגים וייעוץ',li:['הגדרת Windows / macOS','התקנה ורישוי תוכנות','רשת ומדפסות','העברת נתונים']},{tag:'שירות מקיף למשרד',h:'משרד עד המפתח',p:'משרד חדש? הגדרה/התקנת כל הנדרש לתחילת עבודה מיידית',li:['תחנות עבודה לכל העובדים','תשתית רשת ו-Wi-Fi','אימייל, ענן, כוננים משותפים','אבטחה וגיבויים']},{tag:'שירות שוטף קבוע',h:'תמיכה מרחוק',p:'עזרה מהירה לכל בעיית IT — בלי להמתין לביקור',li:['כל מערכת הפעלה, כל מכשיר','וירוסים, האטות, קריסות','זמין כתוכנית חודשית']}],cl2:'תשתיות',ct2:'שרתים ורשתות',srvDesc:'תשתית רצינית לעסקים שצריכים אמינות, אבטחה ושליטה מלאה בנתונים שלהם.',srvGrid:[['שרתי קבצים','אחסון מרכזי, גישה, גיבויים'],['Active Directory','משתמשים, דומיין, מדיניות'],['VPN ואבטחה','גישה מרחוק, חומת אש'],['ענן והיברידי','Microsoft 365, Azure, Google'],['מצלמות אבטחה','מצלמות, NVR, צפייה מרחוק'],['תשתית כבלים','תשתית קווית נקייה ואמינה']],cl3:'שיתופי פעולה',ct3:'שירותי שותפים',pnote:'אני עובד עם מומחים מוכרים — אתם מקבלים איש קשר אחד ותוצאה מתואמת.',pgrid:[['🌐','אתרים ודפי נחיתה','אתרים מודרניים רב-לשוניים'],['📞','טלפוניית IP','מרכזייה וירטואלית, קווי SIP'],['🖨️','מדפסות ו-MFP','אספקה, הגדרה, תחזוקה'],['🔒','בקרת כניסה','מנעולים חכמים, אינטרקום']],cl4:'העסקה הטובה ביותר',ct4:'תוכנית תמיכה חודשית',abonH:'ה-IT שלכם — בטייס אוטומטי',abonP:'תשלום חודשי קבוע. תמיכה מרחוק ללא הגבלה, מענה עדיפות, תחזוקה שוטפת. עלות צפויה, ללא הפתעות.',abonLabel:'החל מ',abonVal:'צרו קשר',cl5:'למה אנחנו',ct5:'אדם אחד. אחריות מלאה.',why:[['💬','מדברים בשפה שלכם — בבהירות ובכבוד','מסבירים הכל בסבלנות ובאופן מובן, ללא מונחים טכניים — כך שתרגישו בנוח בכל שלב.'],['📍','מקומי ואישי','בישראל, מכיר את השוק ותמיד זמין']],ch2:'מוכנים להתחיל?',cp:'',lPhone:'טלפון',lEmail:'אימייל',lWeb:'אתר',foot:'© 2025 itseder.com · אלכסיי פבלנקו · ישראל'}
 };
 
 function setLang(l,btn){
@@ -271,15 +280,22 @@ function setLang(l,btn){
   document.getElementById('who-tags').innerHTML=d.who.map(function(w){return'<span class="wtag">'+w+'</span>';}).join('');
   document.getElementById('cl1').textContent=d.cl1;
   document.getElementById('ct1').textContent=d.ct1;
-  document.getElementById('core-grid').innerHTML=d.cards.map(function(c){return'<div class="scard"><span class="sc-tag">'+c.tag+'</span><h3>'+c.h+'</h3><p>'+c.p+'</p><ul>'+c.li.map(function(i){return'<li>'+i+'</li>';}).join('')+'</ul></div>';}).join('');
+  document.getElementById('core-grid').innerHTML=d.cards.map(function(c){
+    return'<div class="scard"><span class="sc-tag">'+c.tag+'</span><h3>'+c.h+'</h3><p>'+c.p+'</p><ul>'+
+    c.li.map(function(i){return'<li>'+i+'</li>';}).join('')+'</ul></div>';
+  }).join('');
   document.getElementById('cl2').textContent=d.cl2;
   document.getElementById('ct2').textContent=d.ct2;
   document.getElementById('srv-desc').textContent=d.srvDesc;
-  document.getElementById('srv-grid').innerHTML=d.srvGrid.map(function(s){return'<div class="srv-item"><h4>'+s[0]+'</h4><p>'+s[1]+'</p></div>';}).join('');
+  document.getElementById('srv-grid').innerHTML=d.srvGrid.map(function(s){
+    return'<div class="srv-item"><h4>'+s[0]+'</h4><p>'+s[1]+'</p></div>';
+  }).join('');
   document.getElementById('cl3').textContent=d.cl3;
   document.getElementById('ct3').textContent=d.ct3;
   document.getElementById('pnote').textContent=d.pnote;
-  document.getElementById('pgrid').innerHTML=d.pgrid.map(function(p){return'<div class="pcard"><div class="p-icon">'+p[0]+'</div><div><h4>'+p[1]+'</h4><p>'+p[2]+'</p></div></div>';}).join('');
+  document.getElementById('pgrid').innerHTML=d.pgrid.map(function(p){
+    return'<div class="pcard"><div class="p-icon">'+p[0]+'</div><div class="pcard-text"><h4>'+p[1]+'</h4><p>'+p[2]+'</p></div></div>';
+  }).join('');
   document.getElementById('cl4').textContent=d.cl4;
   document.getElementById('ct4').textContent=d.ct4;
   document.getElementById('abon-h').textContent=d.abonH;
@@ -288,7 +304,9 @@ function setLang(l,btn){
   document.getElementById('abon-val').textContent=d.abonVal;
   document.getElementById('cl5').textContent=d.cl5;
   document.getElementById('ct5').textContent=d.ct5;
-  document.getElementById('why-grid').innerHTML=d.why.map(function(w,i){return'<div class="wi'+(i===2?' full':'')+'"><div class="wi-icon">'+w[0]+'</div><div class="wi-body"><h4>'+w[1]+'</h4><p>'+w[2]+'</p></div></div>';}).join('');
+  document.getElementById('why-grid').innerHTML=d.why.map(function(w,i){
+    return'<div class="wi'+(i===2?' full':'')+'"><div class="wi-icon">'+w[0]+'</div><div class="wi-body"><h4>'+w[1]+'</h4><p>'+w[2]+'</p></div></div>';
+  }).join('');
   document.getElementById('ch2').textContent=d.ch2;
   document.getElementById('cp').textContent=d.cp;
   document.getElementById('foot').textContent=d.foot;
