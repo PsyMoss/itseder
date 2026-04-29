@@ -238,9 +238,9 @@ footer{text-align:center;padding:1.5rem;font-size:11px;color:var(--muted);border
 <nav>
   <div class="logo">it<em>seder</em></div>
   <div class="langs">
-    <button class="lb on" onclick="setLang('en',this)">EN</button>
-    <button class="lb" onclick="setLang('ru',this)">RU</button>
-    <button class="lb" onclick="setLang('he',this)">עב</button>
+<button class="lb" onclick="setLang('en',this)">EN</button>
+<button class="lb" onclick="setLang('ru',this)">RU</button>
+<button class="lb on" onclick="setLang('he',this)">עב</button>
   </div>
 </nav>
 
@@ -384,7 +384,7 @@ function setLang(l,btn){
   if(btn)btn.classList.add('on');
 }
 
-setLang('en', document.querySelector('.lb.on'));
+setLang('he', document.querySelector('.lb:last-child'));
 </script>
 </body>
 </html>
