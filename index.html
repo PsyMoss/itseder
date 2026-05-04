@@ -9,7 +9,7 @@
 <meta name="description" content="פתרונות IT למשרדים, תמיכה מרחוק, שרתים ותשתיות. עברית · רוסית · אנגלית. 052-598-3311">
 <meta name="author" content="Alexey Pavlenko — itseder.com">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#E8931E">
+<meta name="theme-color" content="#F2A23A">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -51,9 +51,9 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        bg:'#0F0E0C', bg2:'#141210', bg3:'#1C1916', bg4:'#242018',
-        acc:'#E8931E', acc2:'#4A9E7A', acc3:'#7A8EE8',
-        tx:'#DDD5C8', muted:'#9A9188',
+        bg:'#080A0D', bg2:'#10161D', bg3:'#151D26', bg4:'#1B2631',
+        acc:'#F2A23A', acc2:'#4EC39A', acc3:'#8FA8FF',
+        tx:'#F4F0E8', muted:'#B4AAA0',
       },
       fontFamily: {
         sans:['Inter','system-ui','sans-serif'],
@@ -74,10 +74,10 @@ tailwind.config = {
 <style>
   [x-cloak]{display:none!important}
   html{scroll-behavior:smooth}
-  body{background:#0F0E0C;color:#DDD5C8;font-family:'Inter',system-ui,sans-serif}
+  body{background:#080A0D;color:#F4F0E8;font-family:'Inter',system-ui,sans-serif;background-image:linear-gradient(180deg,#080A0D 0%,#0B1117 52%,#080A0D 100%)}
 
   /* Progress bar */
-  #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#E8931E,#4A9E7A);z-index:200;transition:width .1s linear;border-radius:0 2px 2px 0}
+  #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#F2A23A,#4EC39A);z-index:200;transition:width .1s linear;border-radius:0 2px 2px 0;box-shadow:0 0 18px rgba(242,162,58,.25)}
 
   /* Accordion animation */
   .accordion-body{
@@ -114,7 +114,7 @@ tailwind.config = {
 <div id="progress-bar" :style="`width:${progress}%`"></div>
 
 <!-- NAV -->
-<nav class="sticky top-0 z-50 flex items-center justify-between px-5 py-4 border-b border-white/8 backdrop-blur-lg" style="background:rgba(15,14,12,0.97)">
+<nav class="sticky top-0 z-50 flex items-center justify-between px-5 py-4 border-b border-white/8 backdrop-blur-lg" style="background:rgba(8,10,13,0.95)">
   <div class="font-logo font-bold text-xl text-tx tracking-tight cursor-pointer" @click="scrollTop()">
     IT<span class="text-acc">Seder</span>
   </div>
@@ -132,11 +132,6 @@ tailwind.config = {
 
 <!-- HERO -->
 <section class="max-w-2xl mx-auto px-5 pt-12 pb-8 text-center fade-in">
-  <!-- Pill -->
-  <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-acc/30 bg-bg3 text-acc text-xs tracking-widest uppercase mb-6">
-    <span class="w-1.5 h-1.5 rounded-full bg-acc dot-pulse"></span>
-    <span x-text="t.pill"></span>
-  </div>
   <!-- H1 -->
   <h1 class="text-4xl sm:text-5xl font-bold leading-tight tracking-tight mb-4 text-tx text-center" x-html="t.h1"></h1>
   <!-- Subtitle -->
@@ -144,36 +139,11 @@ tailwind.config = {
   <!-- Buttons -->
   <div class="flex gap-3 justify-center flex-wrap">
     <button @click="scrollTo('contact')" class="px-7 py-3.5 bg-acc text-bg font-semibold rounded-xl text-base transition-opacity hover:opacity-85 min-h-[50px]" x-text="t.b1"></button>
-    <button @click="scrollTo('services')" class="px-7 py-3.5 bg-transparent text-tx border border-white/10 rounded-xl text-base transition-all hover:border-acc hover:text-acc min-h-[50px]" x-text="t.b2"></button>
   </div>
 </section>
 
-<!-- WHO -->
-<div class="max-w-2xl mx-auto px-5 pb-6 fade-in">
-  <div class="flex items-center gap-3 mb-4 justify-center">
-    <div class="flex-1 max-w-[80px] h-px bg-acc/35"></div>
-    <p class="text-sm font-medium text-tx/80" x-text="t.whoP"></p>
-    <div class="flex-1 max-w-[80px] h-px bg-acc/35"></div>
-  </div>
-  <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-    <template x-for="(tag, i) in t.who" :key="i">
-      <button
-        @click="scrollToCard(t.tagAnchors[tag])"
-        class="py-3 px-3 rounded-xl border text-base text-tx/80 text-center transition-all duration-200 hover:border-acc/60 hover:text-acc bg-bg3 font-medium"
-        :class="t.tagAnchors[tag] ? 'border-acc/20 cursor-pointer' : 'border-white/8 cursor-default'"
-        x-text="tag"
-      ></button>
-    </template>
-  </div>
-</div>
-
-<hr class="border-white/8 mx-5">
-
 <!-- SERVICES -->
-<section id="services" class="max-w-2xl mx-auto px-5 py-8 fade-in">
-  <p class="text-[10px] tracking-widest text-acc uppercase mb-1 font-medium" :class="dir==='rtl'?'text-right':''" x-show="t.cl1" x-text="t.cl1"></p>
-  <h2 class="text-2xl sm:text-3xl font-bold text-tx mb-5 tracking-tight" :class="dir==='rtl'?'text-right':''" x-text="t.ct1"></h2>
-
+<section id="services" class="max-w-2xl mx-auto px-5 pt-8 pb-0 fade-in">
   <div class="flex flex-col gap-3" id="cards-container"
     style="scroll-snap-type:y proximity">
     <template x-for="(card, i) in t.cards" :key="card.id">
@@ -199,7 +169,7 @@ tailwind.config = {
             >
           </div>
           <!-- Multi-stop gradient — smooth invisible fade -->
-          <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(15,14,12,0) 0%, rgba(15,14,12,0.15) 25%, rgba(15,14,12,0.6) 42%, rgba(15,14,12,0.88) 52%, rgba(15,14,12,0.98) 60%, rgba(15,14,12,1) 70%)"></div>
+          <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(8,10,13,0) 0%, rgba(8,10,13,0.18) 25%, rgba(8,10,13,0.64) 42%, rgba(8,10,13,0.9) 52%, rgba(8,10,13,0.98) 60%, rgba(8,10,13,1) 70%)"></div>
 
           <!-- Text — right side -->
           <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3"
@@ -224,10 +194,10 @@ tailwind.config = {
         >
           <div>
             <div class="px-5 pb-6" :class="dir==='rtl'?'text-right':''">
-              <p class="text-lg leading-relaxed mb-5" style="color:#C4BAB0" x-text="card.p"></p>
+              <p class="text-lg leading-relaxed mb-5" style="color:#D6CEC4" x-text="card.p"></p>
               <ul class="flex flex-col gap-4">
                 <template x-for="item in card.li" :key="item">
-                  <li class="text-lg leading-relaxed" style="color:#C4BAB0" :class="dir==='rtl' ? 'text-right' : 'flex items-start gap-3'">
+                  <li class="text-lg leading-relaxed" style="color:#D6CEC4" :class="dir==='rtl' ? 'text-right' : 'flex items-start gap-3'">
                     <template x-if="dir!=='rtl'">
                       <span class="text-acc flex-shrink-0 mt-1 text-xl">•</span>
                     </template>
@@ -242,13 +212,10 @@ tailwind.config = {
     </template>
   </div>
 </section>
-
-<hr class="border-white/8 mx-5">
-
 <!-- SERVERS — single accordion -->
-<section class="max-w-2xl mx-auto px-5 py-8 fade-in">
-  <div class="rounded-2xl border bg-bg2 overflow-hidden"
-    style="transition:border-color .3s"
+<section class="max-w-2xl mx-auto px-5 pt-4 pb-0 fade-in">
+  <div id="panel-server" class="rounded-2xl border bg-bg2 overflow-hidden"
+    style="transition:border-color .3s;scroll-snap-align:start;scroll-margin-top:70px"
     :class="openServer===true ? 'border-acc2/60' : 'border-white/8'">
     <!-- Header with image -->
     <div class="relative cursor-pointer overflow-hidden" style="min-height:120px"
@@ -257,7 +224,7 @@ tailwind.config = {
         <img src="/images/servers.avif" @error="$el.src='https://picsum.photos/seed/servers/400/200'"
           class="w-full h-full object-cover object-center" loading="lazy">
       </div>
-      <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(15,14,12,0) 0%, rgba(15,14,12,0.15) 25%, rgba(15,14,12,0.6) 42%, rgba(15,14,12,0.88) 52%, rgba(15,14,12,0.98) 60%, rgba(15,14,12,1) 70%)"></div>
+      <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(8,10,13,0) 0%, rgba(8,10,13,0.18) 25%, rgba(8,10,13,0.64) 42%, rgba(8,10,13,0.9) 52%, rgba(8,10,13,0.98) 60%, rgba(8,10,13,1) 70%)"></div>
       <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3 h-full"
         :class="dir==='rtl' ? 'flex-row-reverse' : ''">
         <div class="flex-1" :class="dir==='rtl'?'text-right':''">
@@ -275,12 +242,12 @@ tailwind.config = {
     <div class="accordion-body" :class="openServer===true ? 'open' : ''">
       <div>
         <div class="px-5 pb-6" :class="dir==='rtl'?'text-right':''">
-          <p class="text-lg leading-relaxed mb-5" style="color:#C4BAB0" x-text="t.srvDesc"></p>
+          <p class="text-lg leading-relaxed mb-5" style="color:#D6CEC4" x-text="t.srvDesc"></p>
           <div class="flex flex-col gap-3">
             <template x-for="item in t.srvGrid" :key="item[0]">
               <div class="rounded-xl border border-white/8 bg-bg4 p-4">
                 <h4 class="text-lg font-bold text-tx mb-1" x-text="item[0]"></h4>
-                <p class="text-base leading-relaxed" style="color:#C4BAB0" x-text="item[1]"></p>
+                <p class="text-base leading-relaxed" style="color:#D6CEC4" x-text="item[1]"></p>
               </div>
             </template>
           </div>
@@ -289,13 +256,10 @@ tailwind.config = {
     </div>
   </div>
 </section>
-
-<hr class="border-white/8 mx-5">
-
 <!-- PARTNERS — single accordion -->
-<section class="max-w-2xl mx-auto px-5 py-8 fade-in">
-  <div class="rounded-2xl border bg-bg2 overflow-hidden"
-    style="transition:border-color .3s"
+<section class="max-w-2xl mx-auto px-5 pt-4 pb-0 fade-in">
+  <div id="panel-partner" class="rounded-2xl border bg-bg2 overflow-hidden"
+    style="transition:border-color .3s;scroll-snap-align:start;scroll-margin-top:70px"
     :class="openPartner===true ? 'border-acc3/60' : 'border-white/8'">
     <!-- Header with image -->
     <div class="relative cursor-pointer overflow-hidden" style="min-height:120px"
@@ -304,7 +268,7 @@ tailwind.config = {
         <img src="/images/partners.avif" @error="$el.src='https://picsum.photos/seed/partners/400/200'"
           class="w-full h-full object-cover object-center" loading="lazy">
       </div>
-      <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(15,14,12,0) 0%, rgba(15,14,12,0.15) 25%, rgba(15,14,12,0.6) 42%, rgba(15,14,12,0.88) 52%, rgba(15,14,12,0.98) 60%, rgba(15,14,12,1) 70%)"></div>
+      <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(8,10,13,0) 0%, rgba(8,10,13,0.18) 25%, rgba(8,10,13,0.64) 42%, rgba(8,10,13,0.9) 52%, rgba(8,10,13,0.98) 60%, rgba(8,10,13,1) 70%)"></div>
       <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3 h-full"
         :class="dir==='rtl' ? 'flex-row-reverse' : ''">
         <div class="flex-1" :class="dir==='rtl'?'text-right':''">
@@ -322,7 +286,7 @@ tailwind.config = {
     <div class="accordion-body" :class="openPartner===true ? 'open' : ''">
       <div>
         <div class="px-5 pb-6">
-          <p class="text-lg leading-relaxed mb-5" :class="dir==='rtl'?'text-right':''" style="color:#C4BAB0" x-text="t.pnote"></p>
+          <p class="text-lg leading-relaxed mb-5" :class="dir==='rtl'?'text-right':''" style="color:#D6CEC4" x-text="t.pnote"></p>
           <div class="flex flex-col gap-3">
             <template x-for="p in t.pgrid" :key="p[1]">
               <div class="flex gap-3 items-start rounded-xl border border-white/8 bg-bg4 p-4"
@@ -330,7 +294,7 @@ tailwind.config = {
                 <div class="w-10 h-10 rounded-lg border border-acc3/25 bg-acc3/10 flex items-center justify-center text-xl flex-shrink-0" x-text="p[0]"></div>
                 <div class="flex-1">
                   <h4 class="text-lg font-bold text-tx mb-1" x-text="p[1]"></h4>
-                  <p class="text-base leading-relaxed" style="color:#C4BAB0" x-text="p[2]"></p>
+                  <p class="text-base leading-relaxed" style="color:#D6CEC4" x-text="p[2]"></p>
                 </div>
               </div>
             </template>
@@ -341,51 +305,10 @@ tailwind.config = {
   </div>
 </section>
 
-<hr class="border-white/8 mx-5">
-
-<!-- MONTHLY PLAN -->
-<section class="max-w-2xl mx-auto px-5 py-8 fade-in">
-  <h2 class="text-2xl sm:text-3xl font-bold text-tx mb-5 tracking-tight" x-text="t.ct4"></h2>
-  <div class="rounded-2xl border border-acc/25 p-5 flex flex-col sm:flex-row gap-5 items-start sm:items-center" style="background:linear-gradient(135deg,rgba(232,147,30,.08),rgba(74,158,122,.06))">
-    <div class="flex-1" :class="dir==='rtl'?'text-right':''">
-      <h3 class="text-xl font-bold text-tx mb-2" x-text="t.abonH"></h3>
-      <p class="text-sm text-muted leading-relaxed" x-text="t.abonP"></p>
-    </div>
-    <div class="bg-acc text-bg rounded-xl px-5 py-3 text-center flex-shrink-0">
-      <div class="text-xs uppercase tracking-wide opacity-70 mb-1" x-text="t.abonLabel"></div>
-      <div class="font-bold font-logo" x-text="t.abonVal"></div>
-    </div>
-  </div>
-</section>
-
-<hr class="border-white/8 mx-5">
-
-<!-- WHY -->
-<section class="max-w-2xl mx-auto px-5 py-8 fade-in">
-  <div class="rounded-2xl border border-white/8 bg-bg3 p-5">
-    <p class="text-[10px] tracking-widest text-acc uppercase mb-1 font-medium" x-text="t.cl5"></p>
-    <h2 class="text-2xl sm:text-3xl font-bold text-tx mb-5 tracking-tight" x-text="t.ct5"></h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/8 rounded-xl overflow-hidden border border-white/8">
-      <template x-for="(w, i) in t.why" :key="i">
-        <div
-          class="flex gap-3 items-start p-4 bg-bg2"
-          :class="[dir==='rtl'?'flex-row-reverse text-right':'', i===2?'sm:col-span-2 bg-bg3 border-t border-acc/20':'']"
-        >
-          <span class="text-lg flex-shrink-0 mt-0.5" x-text="w[0]"></span>
-          <div>
-            <h4 class="text-sm font-semibold text-tx mb-1" :class="i===2?'text-acc':''" x-text="w[1]"></h4>
-            <p class="text-xs text-muted leading-relaxed" x-text="w[2]"></p>
-          </div>
-        </div>
-      </template>
-    </div>
-  </div>
-</section>
-
 <!-- CONTACT -->
-<section id="contact" class="max-w-2xl mx-auto px-5 py-4 pb-10 fade-in">
+<section id="contact" class="max-w-2xl mx-auto px-5 pt-6 pb-10 fade-in">
   <div class="rounded-2xl border border-acc/25 bg-bg3 p-6 text-center relative overflow-hidden">
-    <div class="absolute bottom-0 right-0 w-48 h-48 rounded-full opacity-10" style="background:radial-gradient(circle,#4A9E7A,transparent)"></div>
+    <div class="absolute bottom-0 right-0 w-48 h-48 rounded-full opacity-10" style="background:radial-gradient(circle,#4EC39A,transparent)"></div>
     <p class="text-sm text-muted mb-1 text-center" x-text="t.ch2"></p>
     <h2 class="text-3xl font-logo font-bold text-tx mb-2 text-center" style="text-align:center!important">Alexey Pavlenko</h2>
     <div class="flex gap-2 justify-center mb-6">
@@ -407,9 +330,9 @@ tailwind.config = {
       <!-- WhatsApp -->
       <a href="https://wa.me/972525983311" target="_blank" rel="noopener"
         class="flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border text-base transition-all min-h-[52px]"
-        style="border-color:rgba(37,211,102,.3);background:rgba(37,211,102,.06);color:#DDD5C8"
+        style="border-color:rgba(37,211,102,.3);background:rgba(37,211,102,.06);color:#F4F0E8"
         onmouseover="this.style.borderColor='#25D366';this.style.color='#25D366'"
-        onmouseout="this.style.borderColor='rgba(37,211,102,.3)';this.style.color='#DDD5C8'">
+        onmouseout="this.style.borderColor='rgba(37,211,102,.3)';this.style.color='#F4F0E8'">
         <span class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:#25D366">
           <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         </span>
@@ -451,11 +374,11 @@ function app(){
     scrollLockTimer: null,
 
     T: {
-      en:{dir:'ltr',lang:'en',pill:'IT solutions · Israel',h1:'Your office — <em class="text-acc not-italic">ready to work</em> from day one',hsub:'Full IT setup for offices, remote support, servers and infrastructure — for law firms, insurance, finance and small business across Israel.',b1:'Get in touch',b2:'See services',whoP:'Working with',who:['Law firms','Financial companies','Insurance agencies','Studio & Musicians','Graphic designers','Small business'],tagAnchors:{'Law firms':'office','Financial companies':'remote','Insurance agencies':'remote','Studio & Musicians':'studio','Graphic designers':'studio','Small business':'pc'},cl1:'Core services',ct1:'What I do personally',cards:[{id:'pc',tag:'Most popular',h:'PC Setup',p:'Home & office computers — from unboxing to fully working',li:['Windows / macOS configuration','Software & licensing','Network & printer setup','Data migration']},{id:'office',tag:'Best value',h:'Office Turnkey',p:'New office? I set up everything so your team works from day one',li:['Workstations for all staff','Network & Wi-Fi','Email, cloud, shared drives','Security & backup']},{id:'remote',tag:'Recurring',h:'Remote Support',p:'Fast help for any tech issue — no waiting for a visit',li:['Any OS, any device','Viruses, slowdowns, crashes','Available as monthly plan']},{id:'studio',tag:'Studio & Creative',h:'IT for Studios',p:'Installation, upgrade and setup of professional studio software',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','PC optimization for maximum performance']}],cl2:'Infrastructure',ct2:'Servers & Networks',srvDesc:'Serious infrastructure for businesses that need reliability, security and full control over their data.',srvGrid:[['File Servers','Centralized storage, access control, backups'],['Active Directory','User management, domain, group policies'],['VPN & Security','Secure remote access, firewall setup'],['Cloud & Hybrid','Microsoft 365, Azure, Google Workspace'],['CCTV & Monitoring','Cameras, NVR, remote viewing'],['Structured Cabling','Clean, reliable wired infrastructure']],cl3:'Collaboration',ct3:'Partner services',pnote:'I work with trusted specialists for services outside my core — one contact, coordinated result.',pgrid:[['🌐','Websites & Landing pages','Modern multilingual sites'],['📞','IP Telephony','Virtual PBX, SIP lines, office phones'],['🖨️','Printers & MFP','Supply, setup and maintenance'],['🔒','Access Control','Smart locks, intercoms, badge systems']],cl4:'Best deal',ct4:'Monthly support plan',abonH:'Your IT — on autopilot',abonP:'Fixed monthly fee. Unlimited remote support, priority response, regular maintenance. Predictable cost, no surprises.',abonLabel:'Starting from',abonVal:'Contact us',cl5:'Why us',ct5:'One person. Full responsibility.',why:[['🌍','Hebrew · Russian · English','Work in the language you prefer'],['🏢','Office turnkey','From zero to working — I handle everything'],['💬','We speak human first, tech second','We explain things clearly and patiently — so you always understand what\'s happening, no matter your tech level.'],['📍','Local & personal','Based in Israel, always reachable']],ch2:'Ready to start?',waText:'Chat on WhatsApp',foot:'© 2025 itseder.com · Alexey Pavlenko · Israel'},
+      en:{dir:'ltr',lang:'en',h1:'We set up.<br><em class="text-acc not-italic">You get to work.</em>',hsub:'Full IT setup for offices, remote support, servers and infrastructure — for law firms, insurance, finance and small business across Israel.',b1:'Get in touch',cards:[{id:'pc',tag:'Most popular',h:'PC Setup',p:'Home & office computers — from unboxing to fully working',li:['Windows / macOS configuration','Software & licensing','Network & printer setup','Data migration']},{id:'office',tag:'Best value',h:'Office Turnkey',p:'New office? I set up everything so your team works from day one',li:['Workstations for all staff','Network & Wi-Fi','Email, cloud, shared drives','Security & backup']},{id:'remote',tag:'Recurring',h:'Remote Support',p:'Fast help for any tech issue — no waiting for a visit',li:['Any OS, any device','Viruses, slowdowns, crashes','Available as monthly plan']},{id:'studio',tag:'Studio & Creative',h:'IT for Studios',p:'Installation, upgrade and setup of professional studio software',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','PC optimization for maximum performance']}],cl2:'Infrastructure',ct2:'Servers & Networks',srvDesc:'Serious infrastructure for businesses that need reliability, security and full control over their data.',srvGrid:[['File Servers','Centralized storage, access control, backups'],['Active Directory','User management, domain, group policies'],['VPN & Security','Secure remote access, firewall setup'],['Cloud & Hybrid','Microsoft 365, Azure, Google Workspace'],['CCTV & Monitoring','Cameras, NVR, remote viewing'],['Structured Cabling','Clean, reliable wired infrastructure']],cl3:'Collaboration',ct3:'Partner services',pnote:'I work with trusted specialists for services outside my core — one contact, coordinated result.',pgrid:[['🌐','Websites & Landing pages','Modern multilingual sites'],['📞','IP Telephony','Virtual PBX, SIP lines, office phones'],['🖨️','Printers & MFP','Supply, setup and maintenance'],['🔒','Access Control','Smart locks, intercoms, badge systems']],ch2:'Ready to start?',waText:'Chat on WhatsApp',foot:'© 2025 itseder.com · Alexey Pavlenko · Israel'},
 
-      ru:{dir:'ltr',lang:'ru',pill:'IT-решения · Израиль',h1:'Ваш офис — <em class="text-acc not-italic">готов к работе</em> с первого дня',hsub:'Настройка офисов под ключ, удалённая поддержка, серверы и инфраструктура — для адвокатских контор, страховых, финансовых компаний и малого бизнеса.',b1:'Написать нам',b2:'Услуги',whoP:'Работаем с',who:['Адвокатские конторы','Финансовые компании','Страховые компании','Студии и музыканты','Графические дизайнеры','Малый бизнес'],tagAnchors:{'Адвокатские конторы':'office','Финансовые компании':'remote','Страховые компании':'remote','Студии и музыканты':'studio','Графические дизайнеры':'studio','Малый бизнес':'pc'},cl1:'Основные услуги',ct1:'Что я делаю лично',cards:[{id:'pc',tag:'Самое популярное',h:'Настройка ПК',p:'Домашние и офисные компьютеры — от распаковки до полной работы',li:['Настройка Windows / macOS','Установка и лицензирование ПО','Сеть и принтеры','Перенос данных']},{id:'office',tag:'Лучшая ценность',h:'Офис под ключ',p:'Новый офис? Настрою всё так, чтобы сотрудники сели и сразу работали',li:['Рабочие места для всех сотрудников','Сеть и Wi-Fi','Почта, облако, общие диски','Безопасность и резервные копии']},{id:'remote',tag:'Регулярный',h:'Удалённая поддержка',p:'Быстрая помощь при любой IT-проблеме — без ожидания визита',li:['Любая ОС, любое устройство','Вирусы, зависания, сбои','Доступна как ежемесячный план']},{id:'studio',tag:'Студия & Креатив',h:'IT для студий',p:'Установка, апгрейд и настройка профессионального студийного ПО',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','Оптимизация ПК для максимальной производительности']}],cl2:'Инфраструктура',ct2:'Серверы и сети',srvDesc:'Серьёзная инфраструктура для бизнеса, которому нужны надёжность, безопасность и контроль над данными.',srvGrid:[['Файловые серверы','Хранение, права доступа, бэкапы'],['Active Directory','Пользователи, домен, политики'],['VPN и безопасность','Удалённый доступ, файрвол'],['Облако и гибрид','Microsoft 365, Azure, Google'],['Видеонаблюдение','Камеры, NVR, удалённый просмотр'],['Кабельная сеть','Чистая проводная инфраструктура']],cl3:'Коллаборации',ct3:'Партнёрские услуги',pnote:'Работаю с проверенными специалистами — вы получаете одного контактного человека и согласованный результат.',pgrid:[['🌐','Сайты и лендинги','Современные многоязычные сайты'],['📞','IP-телефония','Виртуальные АТС, SIP-линии'],['🖨️','Принтеры и МФУ','Поставка, настройка, обслуживание'],['🔒','Контроль доступа','Замки, домофоны, пропуска']],cl4:'Лучшее предложение',ct4:'Ежемесячный план поддержки',abonH:'Ваш IT — на автопилоте',abonP:'Фиксированная ежемесячная плата. Безлимитная удалённая поддержка, приоритетный ответ, регулярное обслуживание. Предсказуемые расходы, никаких сюрпризов.',abonLabel:'Начиная от',abonVal:'Свяжитесь с нами',cl5:'Почему мы',ct5:'Один человек. Полная ответственность.',why:[['🌍','Иврит · Русский · Английский','Работайте на удобном вам языке'],['🏢','Офис под ключ','От нуля до рабочего — берусь за всё'],['💬','Говорим понятно — с уважением и терпением','Объясняем всё доступно, без лишних терминов — так, чтобы вам было комфортно на любом уровне.'],['📍','Местный и личный','В Израиле, знаю рынок и всегда на связи']],ch2:'Готовы начать?',waText:'Написать в WhatsApp',foot:'© 2025 itseder.com · Алексей Павленко · Израиль'},
+      ru:{dir:'ltr',lang:'ru',h1:'Мы настраиваем.<br><em class="text-acc not-italic">Вы работаете.</em>',hsub:'Настройка офисов под ключ, удалённая поддержка, серверы и инфраструктура — для адвокатских контор, страховых, финансовых компаний и малого бизнеса.',b1:'Написать нам',cards:[{id:'pc',tag:'Самое популярное',h:'Настройка ПК',p:'Домашние и офисные компьютеры — от распаковки до полной работы',li:['Настройка Windows / macOS','Установка и лицензирование ПО','Сеть и принтеры','Перенос данных']},{id:'office',tag:'Лучшая ценность',h:'Офис под ключ',p:'Новый офис? Настрою всё так, чтобы сотрудники сели и сразу работали',li:['Рабочие места для всех сотрудников','Сеть и Wi-Fi','Почта, облако, общие диски','Безопасность и резервные копии']},{id:'remote',tag:'Регулярный',h:'Удалённая поддержка',p:'Быстрая помощь при любой IT-проблеме — без ожидания визита',li:['Любая ОС, любое устройство','Вирусы, зависания, сбои','Доступна как ежемесячный план']},{id:'studio',tag:'Студия & Креатив',h:'IT для студий',p:'Установка, апгрейд и настройка профессионального студийного ПО',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','Оптимизация ПК для максимальной производительности']}],cl2:'Инфраструктура',ct2:'Серверы и сети',srvDesc:'Серьёзная инфраструктура для бизнеса, которому нужны надёжность, безопасность и контроль над данными.',srvGrid:[['Файловые серверы','Хранение, права доступа, бэкапы'],['Active Directory','Пользователи, домен, политики'],['VPN и безопасность','Удалённый доступ, файрвол'],['Облако и гибрид','Microsoft 365, Azure, Google'],['Видеонаблюдение','Камеры, NVR, удалённый просмотр'],['Кабельная сеть','Чистая проводная инфраструктура']],cl3:'Коллаборации',ct3:'Партнёрские услуги',pnote:'Работаю с проверенными специалистами — вы получаете одного контактного человека и согласованный результат.',pgrid:[['🌐','Сайты и лендинги','Современные многоязычные сайты'],['📞','IP-телефония','Виртуальные АТС, SIP-линии'],['🖨️','Принтеры и МФУ','Поставка, настройка, обслуживание'],['🔒','Контроль доступа','Замки, домофоны, пропуска']],ch2:'Готовы начать?',waText:'Написать в WhatsApp',foot:'© 2025 itseder.com · Алексей Павленко · Израиль'},
 
-      he:{dir:'rtl',lang:'he',pill:'פתרונות IT · ישראל',h1:'המשרד שלכם <em class="text-acc not-italic">מוכן לעבודה</em> מהיום הראשון',hsub:'הקמת IT למשרדים, תמיכה מרחוק, שרתים ותשתיות עבור משרדי עורכי דין, ביטוח, פיננסים ועסקים קטנים.',b1:'צרו קשר',b2:'השירותים',whoP:'עובדים עם',who:['משרדי עורכי דין','חברות פיננסיות','חברות ביטוח','סטודיו ומוזיקאים','מעצבים גרפיים','עסקים קטנים'],tagAnchors:{'משרדי עורכי דין':'office','חברות פיננסיות':'remote','חברות ביטוח':'remote','סטודיו ומוזיקאים':'studio','מעצבים גרפיים':'studio','עסקים קטנים':'pc'},cl1:'שירותים מרכזיים',ct1:'מה אני עושה',cards:[{id:'pc',tag:'שירותים נפוצים',h:'הגדרת מחשב',p:'תיקונים, שידרוגים וייעוץ למחשבים ביתיים ומשרדיים',li:['הגדרת Windows / macOS','התקנה ורישוי תוכנות','רשת ומדפסות','העברת נתונים']},{id:'office',tag:'שירות מקיף למשרד',h:'משרד עד המפתח',p:'משרד חדש? הגדרה/התקנת כל הנדרש לתחילת עבודה מיידית',li:['תחנות עבודה לכל העובדים','תשתית רשת ו-Wi-Fi','אימייל, ענן, כוננים משותפים','אבטחה וגיבויים']},{id:'remote',tag:'שירות שוטף קבוע',h:'תמיכה מרחוק',p:'עזרה מהירה לכל בעיית IT, בלי להמתין לביקור',li:['כל מערכת הפעלה, כל מכשיר','וירוסים, האטות, קריסות','זמין כתוכנית חודשית']},{id:'studio',tag:'סטודיו & קריאייטיב',h:'שירותי IT לסטודיו',p:'התקנה, שדרוג והגדרת תוכנות מקצועיות לסטודיו',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','אופטימיזציה של המחשב לביצועים מקסימליים']}],cl2:'תשתיות',ct2:'שרתים ורשתות',srvDesc:'תשתית רצינית לעסקים שצריכים אמינות, אבטחה ושליטה מלאה בנתונים שלהם.',srvGrid:[['שרתי קבצים','אחסון מרכזי, גישה, גיבויים'],['Active Directory','משתמשים, דומיין, מדיניות'],['VPN ואבטחה','גישה מרחוק, חומת אש'],['ענן והיברידי','Microsoft 365, Azure, Google'],['מצלמות אבטחה','מצלמות, NVR, צפייה מרחוק'],['תשתית כבלים','תשתית קווית נקייה ואמינה']],cl3:'שיתופי פעולה',ct3:'שירותי שותפים',pnote:'אני עובד עם מומחים מוכרים — אתם מקבלים איש קשר אחד ותוצאה מתואמת.',pgrid:[['🌐','אתרים ודפי נחיתה','אתרים מודרניים רב-לשוניים'],['📞','טלפוניית IP','מרכזייה וירטואלית, קווי SIP'],['🖨️','מדפסות ו-MFP','אספקה, הגדרה, תחזוקה'],['🔒','בקרת כניסה','מנעולים חכמים, אינטרקום']],cl4:'העסקה הטובה ביותר',ct4:'תוכנית תמיכה חודשית',abonH:'ה-IT שלכם — בטייס אוטומטי',abonP:'תשלום חודשי קבוע. תמיכה מרחוק ללא הגבלה, מענה עדיפות, תחזוקה שוטפת. עלות צפויה, ללא הפתעות.',abonLabel:'החל מ',abonVal:'צרו קשר',cl5:'למה אנחנו',ct5:'אדם אחד. אחריות מלאה.',why:[['💬','מדברים בשפה שלכם — בבהירות ובכבוד','מסבירים הכל בסבלנות ובאופן מובן, ללא מונחים טכניים — כך שתרגישו בנוח בכל שלב.'],['📍','מקומי ואישי','בישראל, מכיר את השוק ותמיד זמין']],ch2:'מוכנים להתחיל?',waText:'כתבו לנו ב-WhatsApp',foot:'© 2025 itseder.com · אלכסיי פבלנקו · ישראל'}
+      he:{dir:'rtl',lang:'he',h1:'אנחנו מסדרים.<br><em class="text-acc not-italic">אתם יוצרים.</em>',hsub:'הקמת IT למשרדים, תמיכה מרחוק, שרתים ותשתיות עבור משרדי עורכי דין, ביטוח, פיננסים ועסקים קטנים.',b1:'צרו קשר',cards:[{id:'pc',tag:'שירותים נפוצים',h:'הגדרת מחשב',p:'תיקונים, שידרוגים וייעוץ למחשבים ביתיים ומשרדיים',li:['הגדרת Windows / macOS','התקנה ורישוי תוכנות','רשת ומדפסות','העברת נתונים']},{id:'office',tag:'שירות מקיף למשרד',h:'משרד עד המפתח',p:'משרד חדש? הגדרה/התקנת כל הנדרש לתחילת עבודה מיידית',li:['תחנות עבודה לכל העובדים','תשתית רשת ו-Wi-Fi','אימייל, ענן, כוננים משותפים','אבטחה וגיבויים']},{id:'remote',tag:'שירות שוטף קבוע',h:'תמיכה מרחוק',p:'עזרה מהירה לכל בעיית IT, בלי להמתין לביקור',li:['כל מערכת הפעלה, כל מכשיר','וירוסים, האטות, קריסות','זמין כתוכנית חודשית']},{id:'studio',tag:'סטודיו & קריאייטיב',h:'שירותי IT לסטודיו',p:'התקנה, שדרוג והגדרת תוכנות מקצועיות לסטודיו',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','אופטימיזציה של המחשב לביצועים מקסימליים']}],cl2:'תשתיות',ct2:'שרתים ורשתות',srvDesc:'תשתית רצינית לעסקים שצריכים אמינות, אבטחה ושליטה מלאה בנתונים שלהם.',srvGrid:[['שרתי קבצים','אחסון מרכזי, גישה, גיבויים'],['Active Directory','משתמשים, דומיין, מדיניות'],['VPN ואבטחה','גישה מרחוק, חומת אש'],['ענן והיברידי','Microsoft 365, Azure, Google'],['מצלמות אבטחה','מצלמות, NVR, צפייה מרחוק'],['תשתית כבלים','תשתית קווית נקייה ואמינה']],cl3:'שיתופי פעולה',ct3:'שירותי שותפים',pnote:'אני עובד עם מומחים מוכרים — אתם מקבלים איש קשר אחד ותוצאה מתואמת.',pgrid:[['🌐','אתרים ודפי נחיתה','אתרים מודרניים רב-לשוניים'],['📞','טלפוניית IP','מרכזייה וירטואלית, קווי SIP'],['🖨️','מדפסות ו-MFP','אספקה, הגדרה, תחזוקה'],['🔒','בקרת כניסה','מנעולים חכמים, אינטרקום']],ch2:'מוכנים להתחיל?',waText:'כתבו לנו ב-WhatsApp',foot:'© 2025 itseder.com · אלכסיי פבלנקו · ישראל'}
     },
 
     get t(){ return this.T[this.lang] },
@@ -522,20 +445,30 @@ function app(){
 
     _updateActiveCard(){
       const vh = window.innerHeight;
-      const allCards = document.querySelectorAll('[id^="card-"]');
+      const allPanels = document.querySelectorAll('[id^="card-"], #panel-server, #panel-partner');
       let activeIdx = -1;
-      allCards.forEach((card, i) => {
-        const rect = card.getBoundingClientRect();
+      allPanels.forEach((panel, i) => {
+        const rect = panel.getBoundingClientRect();
         const top = rect.top / vh;
         if(top >= 0.3 && top <= 0.7 && activeIdx === -1) activeIdx = i;
       });
-      if(activeIdx !== -1){
-        const newId = allCards[activeIdx].id.replace('card-','');
+      if(activeIdx === -1) return;
+
+      const activePanel = allPanels[activeIdx];
+      if(activePanel.id.startsWith('card-')){
+        const newId = activePanel.id.replace('card-','');
         if(this.openCard !== newId) this.openCard = newId;
-        // подсвечиваем следующую
-        const nextEl = allCards[activeIdx + 1];
-        this.nextCard = nextEl ? nextEl.id.replace('card-','') : null;
+        this.openServer = null;
+        this.openPartner = null;
+        const nextEl = allPanels[activeIdx + 1];
+        this.nextCard = nextEl && nextEl.id.startsWith('card-') ? nextEl.id.replace('card-','') : null;
+        return;
       }
+
+      this.openCard = null;
+      this.nextCard = null;
+      this.openServer = activePanel.id === 'panel-server' ? true : null;
+      this.openPartner = activePanel.id === 'panel-partner' ? true : null;
     },
 
     initFadeIn(){
