@@ -175,7 +175,7 @@ tailwind.config = {
           <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3"
             :class="dir==='rtl' ? 'flex-row-reverse' : ''">
             <div class="flex-1" :class="dir==='rtl'?'text-right':''">
-              <span class="inline-block text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-md border border-acc text-acc mb-2"
+              <span class="inline-flex justify-center min-w-[104px] sm:min-w-[118px] text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-md border border-acc text-acc mb-2"
                 x-text="card.tag"></span>
               <span class="text-xl font-bold text-white block leading-tight" x-text="card.h"></span>
             </div>
@@ -219,7 +219,7 @@ tailwind.config = {
     :class="openServer===true ? 'border-acc2/60' : 'border-white/8'">
     <!-- Header with image -->
     <div class="relative cursor-pointer overflow-hidden" style="min-height:120px"
-      @click="openServer = openServer===true ? null : true">
+      @click="toggleServer()">
       <div class="absolute inset-0">
         <img src="/images/servers.avif" @error="$el.src='https://picsum.photos/seed/servers/400/200'"
           class="w-full h-full object-cover object-center" loading="lazy">
@@ -228,7 +228,7 @@ tailwind.config = {
       <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3 h-full"
         :class="dir==='rtl' ? 'flex-row-reverse' : ''">
         <div class="flex-1" :class="dir==='rtl'?'text-right':''">
-          <span class="inline-block text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-md border border-acc2 text-acc2 mb-2" x-text="t.cl2 || 'Infrastructure'"></span>
+          <span class="inline-flex justify-center min-w-[104px] sm:min-w-[118px] text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-md border border-acc2 text-acc2 mb-2" x-text="t.cl2 || 'Infrastructure'"></span>
           <span class="text-xl font-bold text-white block" x-text="t.ct2"></span>
         </div>
         <svg class="w-5 h-5 text-acc2 flex-shrink-0 transition-transform duration-500"
@@ -263,7 +263,7 @@ tailwind.config = {
     :class="openPartner===true ? 'border-acc3/60' : 'border-white/8'">
     <!-- Header with image -->
     <div class="relative cursor-pointer overflow-hidden" style="min-height:120px"
-      @click="openPartner = openPartner===true ? null : true">
+      @click="togglePartner()">
       <div class="absolute inset-0">
         <img src="/images/partners.avif" @error="$el.src='https://picsum.photos/seed/partners/400/200'"
           class="w-full h-full object-cover object-center" loading="lazy">
@@ -272,7 +272,7 @@ tailwind.config = {
       <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3 h-full"
         :class="dir==='rtl' ? 'flex-row-reverse' : ''">
         <div class="flex-1" :class="dir==='rtl'?'text-right':''">
-          <span class="inline-block text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-md border border-acc3 text-acc3 mb-2" x-text="t.cl3 || 'Collaboration'"></span>
+          <span class="inline-flex justify-center min-w-[104px] sm:min-w-[118px] text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-md border border-acc3 text-acc3 mb-2" x-text="t.cl3 || 'Collaboration'"></span>
           <span class="text-xl font-bold text-white block" x-text="t.ct3"></span>
         </div>
         <svg class="w-5 h-5 text-acc3 flex-shrink-0 transition-transform duration-500"
@@ -307,34 +307,33 @@ tailwind.config = {
 
 <!-- CONTACT -->
 <section id="contact" class="max-w-2xl mx-auto px-5 pt-6 pb-10 fade-in">
-  <div class="rounded-2xl border border-acc/25 bg-bg3 p-6 text-center relative overflow-hidden">
-    <div class="absolute bottom-0 right-0 w-48 h-48 rounded-full opacity-10" style="background:radial-gradient(circle,#4EC39A,transparent)"></div>
+  <div class="rounded-2xl border border-acc/20 bg-bg3 p-6 sm:p-7 text-center relative overflow-hidden shadow-[0_22px_60px_rgba(0,0,0,.28)]">
     <p class="text-sm text-muted mb-1 text-center" x-text="t.ch2"></p>
-    <h2 class="text-3xl font-logo font-bold text-tx mb-2 text-center" style="text-align:center!important">Alexey Pavlenko</h2>
+    <h2 class="text-2xl sm:text-3xl font-logo font-bold text-tx mb-3 text-center tracking-tight" style="text-align:center!important">Alexey Pavlenko</h2>
     <div class="flex gap-2 justify-center mb-6">
       <template x-for="l in ['EN','RU','HE']" :key="l">
-        <span class="text-xs px-3 py-1 rounded-full border border-acc/30 text-acc" x-text="l"></span>
+        <span class="text-[11px] px-3 py-1 rounded-full border border-white/12 bg-bg2/70 text-muted" x-text="l"></span>
       </template>
     </div>
     <div class="flex flex-col gap-3 relative z-10">
       <!-- Phone -->
-      <a href="tel:+972525983311" class="flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border border-white/8 bg-bg4 text-tx text-base transition-all hover:border-acc hover:text-acc min-h-[52px]">
-        <span class="w-8 h-8 rounded-lg bg-bg3 border border-white/8 flex items-center justify-center text-sm flex-shrink-0">📱</span>
+      <a href="tel:+972525983311" class="flex items-center justify-center gap-3 px-4 py-3 rounded-xl border border-white/15 bg-bg4/80 text-tx text-base transition-all hover:border-acc/70 hover:text-acc hover:bg-bg4 min-h-[52px]">
+        <span class="w-8 h-8 rounded-lg bg-bg3 border border-white/10 flex items-center justify-center text-acc flex-shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg></span>
         <span>052-598-3311</span>
       </a>
       <!-- Email -->
-      <a href="mailto:info@itseder.com" class="flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border border-white/8 bg-bg4 text-tx text-base transition-all hover:border-acc hover:text-acc min-h-[52px]">
-        <span class="w-8 h-8 rounded-lg bg-bg3 border border-white/8 flex items-center justify-center text-sm flex-shrink-0">✉️</span>
+      <a href="mailto:info@itseder.com" class="flex items-center justify-center gap-3 px-4 py-3 rounded-xl border border-white/15 bg-bg4/80 text-tx text-base transition-all hover:border-acc/70 hover:text-acc hover:bg-bg4 min-h-[52px]">
+        <span class="w-8 h-8 rounded-lg bg-bg3 border border-white/10 flex items-center justify-center text-acc flex-shrink-0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span>
         <span>info@itseder.com</span>
       </a>
       <!-- WhatsApp -->
       <a href="https://wa.me/972525983311" target="_blank" rel="noopener"
-        class="flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border text-base transition-all min-h-[52px]"
-        style="border-color:rgba(37,211,102,.3);background:rgba(37,211,102,.06);color:#F4F0E8"
-        onmouseover="this.style.borderColor='#25D366';this.style.color='#25D366'"
-        onmouseout="this.style.borderColor='rgba(37,211,102,.3)';this.style.color='#F4F0E8'">
-        <span class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:#25D366">
-          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        class="flex items-center justify-center gap-3 px-4 py-3 rounded-xl border text-base transition-all min-h-[52px]"
+        style="border-color:rgba(37,211,102,.34);background:rgba(37,211,102,.055);color:#F4F0E8"
+        onmouseover="this.style.borderColor='#7BE3A2';this.style.color='#7BE3A2'"
+        onmouseout="this.style.borderColor='rgba(37,211,102,.34)';this.style.color='#F4F0E8'">
+        <span class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 border border-white/10" style="background:rgba(37,211,102,.72)">
+          <svg width="16" height="16" fill="rgba(255,255,255,.88)" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         </span>
         <span x-text="t.waText"></span>
       </a>
@@ -372,6 +371,7 @@ function app(){
     scrollingLocked: false,
     scrollTimer: null,
     scrollLockTimer: null,
+    manualSuppressedPanel: null,
 
     T: {
       en:{dir:'ltr',lang:'en',h1:'We set up.<br><em class="text-acc not-italic">You get to work.</em>',hsub:'Full IT setup for offices, remote support, servers and infrastructure — for law firms, insurance, finance and small business across Israel.',b1:'Get in touch',cards:[{id:'pc',tag:'Most popular',h:'PC Setup',p:'Home & office computers — from unboxing to fully working',li:['Windows / macOS configuration','Software & licensing','Network & printer setup','Data migration']},{id:'office',tag:'Best value',h:'Office Turnkey',p:'New office? I set up everything so your team works from day one',li:['Workstations for all staff','Network & Wi-Fi','Email, cloud, shared drives','Security & backup']},{id:'remote',tag:'Recurring',h:'Remote Support',p:'Fast help for any tech issue — no waiting for a visit',li:['Any OS, any device','Viruses, slowdowns, crashes','Available as monthly plan']},{id:'studio',tag:'Studio & Creative',h:'IT for Studios',p:'Installation, upgrade and setup of professional studio software',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','PC optimization for maximum performance']}],cl2:'Infrastructure',ct2:'Servers & Networks',srvDesc:'Serious infrastructure for businesses that need reliability, security and full control over their data.',srvGrid:[['File Servers','Centralized storage, access control, backups'],['Active Directory','User management, domain, group policies'],['VPN & Security','Secure remote access, firewall setup'],['Cloud & Hybrid','Microsoft 365, Azure, Google Workspace'],['CCTV & Monitoring','Cameras, NVR, remote viewing'],['Structured Cabling','Clean, reliable wired infrastructure']],cl3:'Collaboration',ct3:'Partner services',pnote:'I work with trusted specialists for services outside my core — one contact, coordinated result.',pgrid:[['🌐','Websites & Landing pages','Modern multilingual sites'],['📞','IP Telephony','Virtual PBX, SIP lines, office phones'],['🖨️','Printers & MFP','Supply, setup and maintenance'],['🔒','Access Control','Smart locks, intercoms, badge systems']],ch2:'Ready to start?',waText:'Chat on WhatsApp',foot:'© 2025 itseder.com · Alexey Pavlenko · Israel'},
@@ -397,6 +397,10 @@ function app(){
       document.documentElement.lang = l;
       document.documentElement.dir = this.T[l].dir;
       this.openCard = null;
+      this.openServer = null;
+      this.openPartner = null;
+      this.nextCard = null;
+      this.manualSuppressedPanel = null;
       this.$nextTick(()=>{
         this.initScrollAccordion();
       });
@@ -406,9 +410,24 @@ function app(){
       window.scrollTo({top:0, behavior:'smooth'});
     },
 
+    lockAutoAccordion(ms = 1400){
+      this.scrollingLocked = true;
+      clearTimeout(this.scrollLockTimer);
+      this.scrollLockTimer = setTimeout(()=>{ this.scrollingLocked = false; }, ms);
+    },
+
     scrollTo(id){
       const el = document.getElementById(id);
-      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      if(!el) return;
+      this.lockAutoAccordion(id === 'contact' ? 1800 : 1200);
+      if(id === 'contact'){
+        this.openCard = null;
+        this.openServer = null;
+        this.openPartner = null;
+        this.nextCard = null;
+        this.manualSuppressedPanel = null;
+      }
+      el.scrollIntoView({behavior:'smooth', block:id === 'contact' ? 'center' : 'start'});
     },
 
     scrollToCard(id){
@@ -416,9 +435,7 @@ function app(){
       const el = document.getElementById('card-'+id);
       if(!el) return;
       this.openCard = id;
-      this.scrollingLocked = true;
-      clearTimeout(this.scrollLockTimer);
-      this.scrollLockTimer = setTimeout(()=>{ this.scrollingLocked=false; }, 1000);
+      this.lockAutoAccordion(1000);
       this.$nextTick(()=>{
         setTimeout(()=>{
           const rect = el.getBoundingClientRect();
@@ -433,6 +450,28 @@ function app(){
     toggleCard(id){
       this.openCard = this.openCard === id ? null : id;
       this.nextCard = null;
+      this.manualSuppressedPanel = null;
+      this.lockAutoAccordion(900);
+    },
+
+    toggleServer(){
+      const willOpen = this.openServer !== true;
+      this.openServer = willOpen ? true : null;
+      this.openPartner = null;
+      this.openCard = null;
+      this.nextCard = null;
+      this.manualSuppressedPanel = willOpen ? null : 'panel-server';
+      this.lockAutoAccordion(900);
+    },
+
+    togglePartner(){
+      const willOpen = this.openPartner !== true;
+      this.openPartner = willOpen ? true : null;
+      this.openServer = null;
+      this.openCard = null;
+      this.nextCard = null;
+      this.manualSuppressedPanel = willOpen ? null : 'panel-partner';
+      this.lockAutoAccordion(900);
     },
 
     onScroll(){
@@ -455,6 +494,11 @@ function app(){
       if(activeIdx === -1) return;
 
       const activePanel = allPanels[activeIdx];
+      if(this.manualSuppressedPanel && activePanel.id !== this.manualSuppressedPanel){
+        this.manualSuppressedPanel = null;
+      }
+      if(activePanel.id === this.manualSuppressedPanel) return;
+
       if(activePanel.id.startsWith('card-')){
         const newId = activePanel.id.replace('card-','');
         if(this.openCard !== newId) this.openCard = newId;
