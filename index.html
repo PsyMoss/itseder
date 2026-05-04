@@ -191,6 +191,7 @@ tailwind.config = {
           <div class="absolute inset-0">
             <img
               :src="cardImages[card.id]"
+              :onerror="`this.src='${cardFallback[card.id]}'`"
               class="w-full h-full object-cover object-center"
               :alt="card.h"
               loading="lazy"
@@ -419,6 +420,12 @@ function app(){
     openPartner: null,
     nextCard: null,
     cardImages: {
+      'pc':     '/images/pc.avif',
+      'office': '/images/office.avif',
+      'remote': '/images/remote.avif',
+      'studio': '/images/studio.avif',
+    },
+    cardFallback: {
       'pc':     'https://picsum.photos/seed/computer/400/200',
       'office': 'https://picsum.photos/seed/office/400/200',
       'remote': 'https://picsum.photos/seed/remote/400/200',
