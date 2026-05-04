@@ -175,7 +175,7 @@ tailwind.config = {
           <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3"
             :class="dir==='rtl' ? 'flex-row-reverse' : ''">
             <div class="flex-1" :class="dir==='rtl'?'text-right':''">
-              <span class="inline-flex justify-center min-w-[104px] sm:min-w-[118px] text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-md border border-acc text-acc mb-2"
+              <span class="inline-flex pb-1 text-xs font-semibold tracking-wide text-acc border-b border-acc/70 mb-2"
                 x-text="card.tag"></span>
               <span class="text-xl font-bold text-white block leading-tight" x-text="card.h"></span>
             </div>
@@ -228,7 +228,7 @@ tailwind.config = {
       <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3 h-full"
         :class="dir==='rtl' ? 'flex-row-reverse' : ''">
         <div class="flex-1" :class="dir==='rtl'?'text-right':''">
-          <span class="inline-flex justify-center min-w-[104px] sm:min-w-[118px] text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-md border border-acc2 text-acc2 mb-2" x-text="t.cl2 || 'Infrastructure'"></span>
+          <span class="inline-flex pb-1 text-xs font-semibold tracking-wide text-acc2 border-b border-acc2/70 mb-2" x-text="t.cl2 || 'Infrastructure'"></span>
           <span class="text-xl font-bold text-white block" x-text="t.ct2"></span>
         </div>
         <svg class="w-5 h-5 text-acc2 flex-shrink-0 transition-transform duration-500"
@@ -272,7 +272,7 @@ tailwind.config = {
       <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3 h-full"
         :class="dir==='rtl' ? 'flex-row-reverse' : ''">
         <div class="flex-1" :class="dir==='rtl'?'text-right':''">
-          <span class="inline-flex justify-center min-w-[104px] sm:min-w-[118px] text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-md border border-acc3 text-acc3 mb-2" x-text="t.cl3 || 'Collaboration'"></span>
+          <span class="inline-flex pb-1 text-xs font-semibold tracking-wide text-acc3 border-b border-acc3/70 mb-2" x-text="t.cl3 || 'Collaboration'"></span>
           <span class="text-xl font-bold text-white block" x-text="t.ct3"></span>
         </div>
         <svg class="w-5 h-5 text-acc3 flex-shrink-0 transition-transform duration-500"
