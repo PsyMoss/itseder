@@ -85,6 +85,7 @@ tailwind.config = {
     grid-template-rows:0fr;
     transition:grid-template-rows .65s cubic-bezier(0.4,0,0.2,1), opacity .5s ease .1s;
     opacity:0;
+    will-change:grid-template-rows,opacity;
   }
   .accordion-body.open{
     grid-template-rows:1fr;
@@ -246,7 +247,8 @@ tailwind.config = {
 
 <!-- SERVERS — single accordion -->
 <section class="max-w-2xl mx-auto px-5 py-8 fade-in">
-  <div class="rounded-2xl border bg-bg2 transition-all duration-300 overflow-hidden"
+  <div class="rounded-2xl border bg-bg2 overflow-hidden"
+    style="transition:border-color .3s"
     :class="openServer===true ? 'border-acc2/60' : 'border-white/8'">
     <!-- Header with image -->
     <div class="relative cursor-pointer overflow-hidden" style="min-height:120px"
@@ -292,7 +294,8 @@ tailwind.config = {
 
 <!-- PARTNERS — single accordion -->
 <section class="max-w-2xl mx-auto px-5 py-8 fade-in">
-  <div class="rounded-2xl border bg-bg2 transition-all duration-300 overflow-hidden"
+  <div class="rounded-2xl border bg-bg2 overflow-hidden"
+    style="transition:border-color .3s"
     :class="openPartner===true ? 'border-acc3/60' : 'border-white/8'">
     <!-- Header with image -->
     <div class="relative cursor-pointer overflow-hidden" style="min-height:120px"
