@@ -101,11 +101,8 @@ tailwind.config = {
   .fade-in.visible{opacity:1;transform:translateY(0)}
 
   /* RTL global text alignment */
-  [dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] h4,
-  [dir="rtl"] p,[dir="rtl"] li,[dir="rtl"] span:not(.text-acc):not(.dot-pulse){
-    text-align:right;
-  }
-  [dir="rtl"] .text-center{text-align:center!important}
+  [dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] h4{text-align:right}
+  [dir="rtl"] .rtl-text{text-align:right}
   [dir="rtl"] ul{padding-right:0}
 </style>
 </head>
@@ -140,7 +137,7 @@ tailwind.config = {
     <span x-text="t.pill"></span>
   </div>
   <!-- H1 -->
-  <h1 class="text-4xl sm:text-5xl font-bold leading-tight tracking-tight mb-4 text-tx" x-html="t.h1"></h1>
+  <h1 class="text-4xl sm:text-5xl font-bold leading-tight tracking-tight mb-4 text-tx text-center" x-html="t.h1"></h1>
   <!-- Subtitle -->
   <p class="text-base text-muted leading-relaxed max-w-md mx-auto mb-8" x-text="t.hsub"></p>
   <!-- Buttons -->
@@ -260,9 +257,10 @@ tailwind.config = {
     <p class="text-sm text-muted leading-relaxed mb-4" x-text="t.pnote"></p>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
       <template x-for="p in t.pgrid" :key="p[1]">
-        <div class="flex gap-3 items-start rounded-xl border border-white/8 bg-bg4 p-3" :class="dir==='rtl'?'flex-row-reverse text-right':''">
+        <div class="flex gap-3 items-start rounded-xl border border-white/8 bg-bg4 p-3"
+          :class="dir==='rtl' ? 'flex-row-reverse text-right' : ''">
           <div class="w-9 h-9 rounded-lg border border-acc3/25 bg-acc3/10 flex items-center justify-center text-base flex-shrink-0" x-text="p[0]"></div>
-          <div>
+          <div class="flex-1">
             <h4 class="text-sm font-semibold text-tx mb-0.5" x-text="p[1]"></h4>
             <p class="text-xs text-muted leading-relaxed" x-text="p[2]"></p>
           </div>
@@ -317,8 +315,8 @@ tailwind.config = {
 <section id="contact" class="max-w-2xl mx-auto px-5 py-4 pb-10 fade-in">
   <div class="rounded-2xl border border-acc/25 bg-bg3 p-6 text-center relative overflow-hidden">
     <div class="absolute bottom-0 right-0 w-48 h-48 rounded-full opacity-10" style="background:radial-gradient(circle,#4A9E7A,transparent)"></div>
-    <p class="text-sm text-muted mb-1" x-text="t.ch2"></p>
-    <h2 class="text-3xl font-logo font-bold text-tx mb-2">Alexey Pavlenko</h2>
+    <p class="text-sm text-muted mb-1 text-center" x-text="t.ch2"></p>
+    <h2 class="text-3xl font-logo font-bold text-tx mb-2 text-center" style="text-align:center!important">Alexey Pavlenko</h2>
     <div class="flex gap-2 justify-center mb-6">
       <template x-for="l in ['EN','RU','HE']" :key="l">
         <span class="text-xs px-3 py-1 rounded-full border border-acc/30 text-acc" x-text="l"></span>
@@ -326,18 +324,18 @@ tailwind.config = {
     </div>
     <div class="flex flex-col gap-3 relative z-10">
       <!-- Phone -->
-      <a href="tel:+972525983311" class="flex items-center gap-3 justify-center px-4 py-3.5 rounded-xl border border-white/8 bg-bg4 text-tx text-base transition-all hover:border-acc hover:text-acc min-h-[52px]">
+      <a href="tel:+972525983311" class="flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border border-white/8 bg-bg4 text-tx text-base transition-all hover:border-acc hover:text-acc min-h-[52px]">
         <span class="w-8 h-8 rounded-lg bg-bg3 border border-white/8 flex items-center justify-center text-sm flex-shrink-0">📱</span>
-        052-598-3311
+        <span>052-598-3311</span>
       </a>
       <!-- Email -->
-      <a href="mailto:info@itseder.com" class="flex items-center gap-3 justify-center px-4 py-3.5 rounded-xl border border-white/8 bg-bg4 text-tx text-base transition-all hover:border-acc hover:text-acc min-h-[52px]">
+      <a href="mailto:info@itseder.com" class="flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border border-white/8 bg-bg4 text-tx text-base transition-all hover:border-acc hover:text-acc min-h-[52px]">
         <span class="w-8 h-8 rounded-lg bg-bg3 border border-white/8 flex items-center justify-center text-sm flex-shrink-0">✉️</span>
-        info@itseder.com
+        <span>info@itseder.com</span>
       </a>
       <!-- WhatsApp -->
       <a href="https://wa.me/972525983311" target="_blank" rel="noopener"
-        class="flex items-center gap-3 justify-center px-4 py-3.5 rounded-xl border text-base transition-all min-h-[52px]"
+        class="flex items-center justify-center gap-3 px-4 py-3.5 rounded-xl border text-base transition-all min-h-[52px]"
         style="border-color:rgba(37,211,102,.3);background:rgba(37,211,102,.06);color:#DDD5C8"
         onmouseover="this.style.borderColor='#25D366';this.style.color='#25D366'"
         onmouseout="this.style.borderColor='rgba(37,211,102,.3)';this.style.color='#DDD5C8'">
@@ -369,7 +367,7 @@ function app(){
 
       ru:{dir:'ltr',lang:'ru',pill:'IT-решения · Израиль',h1:'Ваш офис — <em class="text-acc not-italic">готов к работе</em> с первого дня',hsub:'Настройка офисов под ключ, удалённая поддержка, серверы и инфраструктура — для адвокатских контор, страховых, финансовых компаний и малого бизнеса.',b1:'Написать нам',b2:'Услуги',whoP:'Работаем с',who:['Адвокатские конторы','Финансовые компании','Страховые компании','Студии и музыканты','Графические дизайнеры','Малый бизнес'],tagAnchors:{'Адвокатские конторы':'office','Финансовые компании':'remote','Страховые компании':'remote','Студии и музыканты':'studio','Графические дизайнеры':'studio','Малый бизнес':'pc'},cl1:'Основные услуги',ct1:'Что я делаю лично',cards:[{id:'pc',tag:'Самое популярное',h:'Настройка ПК',p:'Домашние и офисные компьютеры — от распаковки до полной работы',li:['Настройка Windows / macOS','Установка и лицензирование ПО','Сеть и принтеры','Перенос данных']},{id:'office',tag:'Лучшая ценность',h:'Офис под ключ',p:'Новый офис? Настрою всё так, чтобы сотрудники сели и сразу работали',li:['Рабочие места для всех сотрудников','Сеть и Wi-Fi','Почта, облако, общие диски','Безопасность и резервные копии']},{id:'remote',tag:'Регулярный',h:'Удалённая поддержка',p:'Быстрая помощь при любой IT-проблеме — без ожидания визита',li:['Любая ОС, любое устройство','Вирусы, зависания, сбои','Доступна как ежемесячный план']},{id:'studio',tag:'Студия & Креатив',h:'IT для студий',p:'Установка, апгрейд и настройка профессионального студийного ПО',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','Оптимизация ПК для максимальной производительности']}],cl2:'Инфраструктура',ct2:'Серверы и сети',srvDesc:'Серьёзная инфраструктура для бизнеса, которому нужны надёжность, безопасность и контроль над данными.',srvGrid:[['Файловые серверы','Хранение, права доступа, бэкапы'],['Active Directory','Пользователи, домен, политики'],['VPN и безопасность','Удалённый доступ, файрвол'],['Облако и гибрид','Microsoft 365, Azure, Google'],['Видеонаблюдение','Камеры, NVR, удалённый просмотр'],['Кабельная сеть','Чистая проводная инфраструктура']],cl3:'Коллаборации',ct3:'Партнёрские услуги',pnote:'Работаю с проверенными специалистами — вы получаете одного контактного человека и согласованный результат.',pgrid:[['🌐','Сайты и лендинги','Современные многоязычные сайты'],['📞','IP-телефония','Виртуальные АТС, SIP-линии'],['🖨️','Принтеры и МФУ','Поставка, настройка, обслуживание'],['🔒','Контроль доступа','Замки, домофоны, пропуска']],cl4:'Лучшее предложение',ct4:'Ежемесячный план поддержки',abonH:'Ваш IT — на автопилоте',abonP:'Фиксированная ежемесячная плата. Безлимитная удалённая поддержка, приоритетный ответ, регулярное обслуживание. Предсказуемые расходы, никаких сюрпризов.',abonLabel:'Начиная от',abonVal:'Свяжитесь с нами',cl5:'Почему мы',ct5:'Один человек. Полная ответственность.',why:[['🌍','Иврит · Русский · Английский','Работайте на удобном вам языке'],['🏢','Офис под ключ','От нуля до рабочего — берусь за всё'],['💬','Говорим понятно — с уважением и терпением','Объясняем всё доступно, без лишних терминов — так, чтобы вам было комфортно на любом уровне.'],['📍','Местный и личный','В Израиле, знаю рынок и всегда на связи']],ch2:'Готовы начать?',waText:'Написать в WhatsApp',foot:'© 2025 itseder.com · Алексей Павленко · Израиль'},
 
-      he:{dir:'rtl',lang:'he',pill:'פתרונות IT · ישראל',h1:'המשרד שלכם<br><em class="text-acc not-italic">מוכן לעבודה</em> מהיום הראשון',hsub:'הקמת IT למשרדים, תמיכה מרחוק, שרתים ותשתיות עבור משרדי עורכי דין, ביטוח, פיננסים ועסקים קטנים.',b1:'צרו קשר',b2:'השירותים',whoP:'עובדים עם',who:['משרדי עורכי דין','חברות פיננסיות','חברות ביטוח','סטודיו ומוזיקאים','מעצבים גרפיים','עסקים קטנים'],tagAnchors:{'משרדי עורכי דין':'office','חברות פיננסיות':'remote','חברות ביטוח':'remote','סטודיו ומוזיקאים':'studio','מעצבים גרפיים':'studio','עסקים קטנים':'pc'},cl1:'שירותים מרכזיים',ct1:'מה אני עושה',cards:[{id:'pc',tag:'שירותים נפוצים',h:'הגדרת מחשב',p:'תיקונים, שידרוגים וייעוץ למחשבים ביתיים ומשרדיים',li:['הגדרת Windows / macOS','התקנה ורישוי תוכנות','רשת ומדפסות','העברת נתונים']},{id:'office',tag:'שירות מקיף למשרד',h:'משרד עד המפתח',p:'משרד חדש? הגדרה/התקנת כל הנדרש לתחילת עבודה מיידית',li:['תחנות עבודה לכל העובדים','תשתית רשת ו-Wi-Fi','אימייל, ענן, כוננים משותפים','אבטחה וגיבויים']},{id:'remote',tag:'שירות שוטף קבוע',h:'תמיכה מרחוק',p:'עזרה מהירה לכל בעיית IT, בלי להמתין לביקור',li:['כל מערכת הפעלה, כל מכשיר','וירוסים, האטות, קריסות','זמין כתוכנית חודשית']},{id:'studio',tag:'סטודיו & קריאייטיב',h:'שירותי IT לסטודיו',p:'התקנה, שדרוג והגדרת תוכנות מקצועיות לסטודיו',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','אופטימיזציה של המחשב לביצועים מקסימליים']}],cl2:'תשתיות',ct2:'שרתים ורשתות',srvDesc:'תשתית רצינית לעסקים שצריכים אמינות, אבטחה ושליטה מלאה בנתונים שלהם.',srvGrid:[['שרתי קבצים','אחסון מרכזי, גישה, גיבויים'],['Active Directory','משתמשים, דומיין, מדיניות'],['VPN ואבטחה','גישה מרחוק, חומת אש'],['ענן והיברידי','Microsoft 365, Azure, Google'],['מצלמות אבטחה','מצלמות, NVR, צפייה מרחוק'],['תשתית כבלים','תשתית קווית נקייה ואמינה']],cl3:'שיתופי פעולה',ct3:'שירותי שותפים',pnote:'אני עובד עם מומחים מוכרים — אתם מקבלים איש קשר אחד ותוצאה מתואמת.',pgrid:[['🌐','אתרים ודפי נחיתה','אתרים מודרניים רב-לשוניים'],['📞','טלפוניית IP','מרכזייה וירטואלית, קווי SIP'],['🖨️','מדפסות ו-MFP','אספקה, הגדרה, תחזוקה'],['🔒','בקרת כניסה','מנעולים חכמים, אינטרקום']],cl4:'העסקה הטובה ביותר',ct4:'תוכנית תמיכה חודשית',abonH:'ה-IT שלכם — בטייס אוטומטי',abonP:'תשלום חודשי קבוע. תמיכה מרחוק ללא הגבלה, מענה עדיפות, תחזוקה שוטפת. עלות צפויה, ללא הפתעות.',abonLabel:'החל מ',abonVal:'צרו קשר',cl5:'למה אנחנו',ct5:'אדם אחד. אחריות מלאה.',why:[['💬','מדברים בשפה שלכם — בבהירות ובכבוד','מסבירים הכל בסבלנות ובאופן מובן, ללא מונחים טכניים — כך שתרגישו בנוח בכל שלב.'],['📍','מקומי ואישי','בישראל, מכיר את השוק ותמיד זמין']],ch2:'מוכנים להתחיל?',waText:'כתבו לנו ב-WhatsApp',foot:'© 2025 itseder.com · אלכסיי פבלנקו · ישראל'}
+      he:{dir:'rtl',lang:'he',pill:'פתרונות IT · ישראל',h1:'המשרד שלכם <em class="text-acc not-italic">מוכן לעבודה</em> מהיום הראשון',hsub:'הקמת IT למשרדים, תמיכה מרחוק, שרתים ותשתיות עבור משרדי עורכי דין, ביטוח, פיננסים ועסקים קטנים.',b1:'צרו קשר',b2:'השירותים',whoP:'עובדים עם',who:['משרדי עורכי דין','חברות פיננסיות','חברות ביטוח','סטודיו ומוזיקאים','מעצבים גרפיים','עסקים קטנים'],tagAnchors:{'משרדי עורכי דין':'office','חברות פיננסיות':'remote','חברות ביטוח':'remote','סטודיו ומוזיקאים':'studio','מעצבים גרפיים':'studio','עסקים קטנים':'pc'},cl1:'שירותים מרכזיים',ct1:'מה אני עושה',cards:[{id:'pc',tag:'שירותים נפוצים',h:'הגדרת מחשב',p:'תיקונים, שידרוגים וייעוץ למחשבים ביתיים ומשרדיים',li:['הגדרת Windows / macOS','התקנה ורישוי תוכנות','רשת ומדפסות','העברת נתונים']},{id:'office',tag:'שירות מקיף למשרד',h:'משרד עד המפתח',p:'משרד חדש? הגדרה/התקנת כל הנדרש לתחילת עבודה מיידית',li:['תחנות עבודה לכל העובדים','תשתית רשת ו-Wi-Fi','אימייל, ענן, כוננים משותפים','אבטחה וגיבויים']},{id:'remote',tag:'שירות שוטף קבוע',h:'תמיכה מרחוק',p:'עזרה מהירה לכל בעיית IT, בלי להמתין לביקור',li:['כל מערכת הפעלה, כל מכשיר','וירוסים, האטות, קריסות','זמין כתוכנית חודשית']},{id:'studio',tag:'סטודיו & קריאייטיב',h:'שירותי IT לסטודיו',p:'התקנה, שדרוג והגדרת תוכנות מקצועיות לסטודיו',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','אופטימיזציה של המחשב לביצועים מקסימליים']}],cl2:'תשתיות',ct2:'שרתים ורשתות',srvDesc:'תשתית רצינית לעסקים שצריכים אמינות, אבטחה ושליטה מלאה בנתונים שלהם.',srvGrid:[['שרתי קבצים','אחסון מרכזי, גישה, גיבויים'],['Active Directory','משתמשים, דומיין, מדיניות'],['VPN ואבטחה','גישה מרחוק, חומת אש'],['ענן והיברידי','Microsoft 365, Azure, Google'],['מצלמות אבטחה','מצלמות, NVR, צפייה מרחוק'],['תשתית כבלים','תשתית קווית נקייה ואמינה']],cl3:'שיתופי פעולה',ct3:'שירותי שותפים',pnote:'אני עובד עם מומחים מוכרים — אתם מקבלים איש קשר אחד ותוצאה מתואמת.',pgrid:[['🌐','אתרים ודפי נחיתה','אתרים מודרניים רב-לשוניים'],['📞','טלפוניית IP','מרכזייה וירטואלית, קווי SIP'],['🖨️','מדפסות ו-MFP','אספקה, הגדרה, תחזוקה'],['🔒','בקרת כניסה','מנעולים חכמים, אינטרקום']],cl4:'העסקה הטובה ביותר',ct4:'תוכנית תמיכה חודשית',abonH:'ה-IT שלכם — בטייס אוטומטי',abonP:'תשלום חודשי קבוע. תמיכה מרחוק ללא הגבלה, מענה עדיפות, תחזוקה שוטפת. עלות צפויה, ללא הפתעות.',abonLabel:'החל מ',abonVal:'צרו קשר',cl5:'למה אנחנו',ct5:'אדם אחד. אחריות מלאה.',why:[['💬','מדברים בשפה שלכם — בבהירות ובכבוד','מסבירים הכל בסבלנות ובאופן מובן, ללא מונחים טכניים — כך שתרגישו בנוח בכל שלב.'],['📍','מקומי ואישי','בישראל, מכיר את השוק ותמיד זמין']],ch2:'מוכנים להתחיל?',waText:'כתבו לנו ב-WhatsApp',foot:'© 2025 itseder.com · אלכסיי פבלנקו · ישראל'}
     },
 
     get t(){ return this.T[this.lang] },
