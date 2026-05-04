@@ -83,7 +83,7 @@ tailwind.config = {
   .accordion-body{
     display:grid;
     grid-template-rows:0fr;
-    transition:grid-template-rows .5s cubic-bezier(0.4,0,0.2,1), opacity .4s ease;
+    transition:grid-template-rows .65s cubic-bezier(0.4,0,0.2,1), opacity .5s ease .1s;
     opacity:0;
   }
   .accordion-body.open{
@@ -173,18 +173,22 @@ tailwind.config = {
   <p class="text-[10px] tracking-widest text-acc uppercase mb-1 font-medium" :class="dir==='rtl'?'text-right':''" x-show="t.cl1" x-text="t.cl1"></p>
   <h2 class="text-2xl sm:text-3xl font-bold text-tx mb-5 tracking-tight" :class="dir==='rtl'?'text-right':''" x-text="t.ct1"></h2>
 
-  <div class="flex flex-col gap-3" id="cards-container">
+  <div class="flex flex-col gap-3" id="cards-container"
+    style="scroll-snap-type:y proximity">
     <template x-for="(card, i) in t.cards" :key="card.id">
       <div
         :id="'card-'+card.id"
         class="rounded-2xl border bg-bg2 transition-all duration-300 overflow-hidden"
-        :class="openCard===card.id ? 'border-acc/60' : 'border-white/8'"
+        :class="openCard===card.id ? 'border-acc/60' : nextCard===card.id ? 'border-acc/20' : 'border-white/8'"
+        style="scroll-snap-align:start;scroll-margin-top:70px"
         x-data="{get isOpen(){return $root.__x.$data.openCard===card.id}}"
       >
+        <!-- Invisible trigger for IntersectionObserver -->
+        <div class="card-trigger h-px w-full" :data-card-id="card.id"></div>
         <!-- Header — diagonal image left, text right -->
         <div class="relative cursor-pointer overflow-hidden flex items-center" style="min-height:120px" @click="toggleCard(card.id)">
-          <!-- Image with diagonal clip — always on LEFT (opposite to text in RTL) -->
-          <div class="absolute inset-0" style="clip-path:polygon(0 0, 55% 0, 40% 100%, 0 100%)">
+          <!-- Image with smooth gradient fade — no visible edge -->
+          <div class="absolute inset-0">
             <img
               :src="cardImages[card.id]"
               class="w-full h-full object-cover object-center"
@@ -192,8 +196,8 @@ tailwind.config = {
               loading="lazy"
             >
           </div>
-          <!-- Gradient — left transparent, right dark -->
-          <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(15,14,12,0) 0%, rgba(15,14,12,0.7) 40%, rgba(15,14,12,0.99) 58%)"></div>
+          <!-- Multi-stop gradient — smooth invisible fade -->
+          <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(15,14,12,0) 0%, rgba(15,14,12,0.15) 25%, rgba(15,14,12,0.6) 42%, rgba(15,14,12,0.88) 52%, rgba(15,14,12,0.98) 60%, rgba(15,14,12,1) 70%)"></div>
 
           <!-- Text — right side -->
           <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3"
@@ -413,6 +417,7 @@ function app(){
     openCard: null,
     openServer: null,
     openPartner: null,
+    nextCard: null,
     cardImages: {
       'pc':     'https://picsum.photos/seed/computer/400/200',
       'office': 'https://picsum.photos/seed/office/400/200',
@@ -482,31 +487,33 @@ function app(){
 
     toggleCard(id){
       this.openCard = this.openCard === id ? null : id;
+      this.nextCard = null;
     },
 
     onScroll(){
-      // Progress bar
       const scrollTop = window.scrollY;
       const docH = document.documentElement.scrollHeight - window.innerHeight;
       this.progress = docH > 0 ? (scrollTop/docH)*100 : 0;
-
-      // Scroll accordion — mobile only
       if(window.innerWidth >= 768 || this.scrollingLocked) return;
-      clearTimeout(this.scrollTimer);
-      this.scrollTimer = setTimeout(()=>{
-        const cards = document.querySelectorAll('[id^="card-"]');
-        const center = window.innerHeight/2;
-        let best=null, bestDist=Infinity;
-        cards.forEach(card=>{
-          const rect=card.getBoundingClientRect();
-          const dist=Math.abs((rect.top+rect.height/2)-center);
-          if(dist<bestDist){bestDist=dist;best=card;}
-        });
-        if(best && bestDist < window.innerHeight*0.5){
-          const newId = best.id.replace('card-','');
-          if(this.openCard !== newId) this.openCard = newId;
-        }
-      }, 80);
+      this._updateActiveCard();
+    },
+
+    _updateActiveCard(){
+      const vh = window.innerHeight;
+      const allCards = document.querySelectorAll('[id^="card-"]');
+      let activeIdx = -1;
+      allCards.forEach((card, i) => {
+        const rect = card.getBoundingClientRect();
+        const top = rect.top / vh;
+        if(top >= 0.3 && top <= 0.7 && activeIdx === -1) activeIdx = i;
+      });
+      if(activeIdx !== -1){
+        const newId = allCards[activeIdx].id.replace('card-','');
+        if(this.openCard !== newId) this.openCard = newId;
+        // подсвечиваем следующую
+        const nextEl = allCards[activeIdx + 1];
+        this.nextCard = nextEl ? nextEl.id.replace('card-','') : null;
+      }
     },
 
     initFadeIn(){
@@ -517,10 +524,9 @@ function app(){
     },
 
     initScrollAccordion(){
-      // открываем первую карточку по умолчанию на мобильном
-      if(window.innerWidth < 768 && this.t.cards.length > 0){
-        this.openCard = this.t.cards[0].id;
-      }
+      if(window.innerWidth >= 768) return;
+      if(this.t.cards.length > 0) this.openCard = this.t.cards[0].id;
+      setTimeout(()=>this._updateActiveCard(), 200);
     }
   }
 }
