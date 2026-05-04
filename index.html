@@ -138,6 +138,23 @@ h1 em{color:var(--acc);font-style:normal}
 .scard ul li{font-size:14px;color:#B8AFA6;line-height:1.7;display:flex;align-items:flex-start;gap:8px}
 .scard ul li::before{content:'→';color:var(--acc);flex-shrink:0;font-size:14px}
 
+/* ── ACCORDION — mobile only ── */
+.scard-header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.scard-header h3{margin-bottom:0}
+.scard-arrow{display:none}
+
+@media(max-width:599px){
+  .scard{padding:1.25rem;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .scard-arrow{display:block;font-size:18px;color:var(--acc);transition:transform .5s cubic-bezier(0.4,0,0.2,1);flex-shrink:0;line-height:1}
+  .scard.open .scard-arrow{transform:rotate(180deg)}
+  .scard-body{overflow:hidden;max-height:0;transition:max-height .5s cubic-bezier(0.4,0,0.2,1),opacity .4s ease,margin-top .4s ease;opacity:0;margin-top:0}
+  .scard.open .scard-body{max-height:500px;opacity:1;margin-top:1rem}
+  .scard p{font-size:16px}
+  .scard ul li{font-size:16px}
+  [dir="rtl"] .scard ul li::before{content:'•';color:var(--acc)}
+  [dir="rtl"] .scard ul li{display:block;text-align:right;padding-right:16px;position:relative}
+}
+
 /* ── SERVER ── */
 .server-block{background:var(--bg3);border:1px solid var(--border-grn);border-radius:14px;padding:1.5rem}
 .server-desc{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:1.1rem}
@@ -429,9 +446,13 @@ function setLang(l,btn){
   document.getElementById('cl1').textContent=d.cl1;
   document.getElementById('ct1').textContent=d.ct1;
   document.getElementById('core-grid').innerHTML=d.cards.map(function(c){
-    return'<div class="scard" id="card-'+c.id+'"><span class="sc-tag">'+c.tag+'</span><h3>'+c.h+'</h3><p>'+c.p+'</p><ul>'+
-    c.li.map(function(i){return'<li>'+i+'</li>';}).join('')+'</ul></div>';
+    return'<div class="scard" id="card-'+c.id+'" onclick="toggleCard(this)">'
+      +'<span class="sc-tag">'+c.tag+'</span>'
+      +'<div class="scard-header"><h3>'+c.h+'</h3><span class="scard-arrow">▾</span></div>'
+      +'<div class="scard-body"><p>'+c.p+'</p><ul>'+c.li.map(function(i){return'<li>'+i+'</li>';}).join('')+'</ul></div>'
+      +'</div>';
   }).join('');
+  initScrollAccordion();
   document.getElementById('cl2').textContent=d.cl2;
   document.getElementById('ct2').textContent=d.ct2;
   document.getElementById('srv-desc').textContent=d.srvDesc;
@@ -463,6 +484,34 @@ function setLang(l,btn){
   if(tip){tip.textContent=d.dir==='rtl'?'💬 כתבו לנו ב-WhatsApp':d.lang==='ru'?'💬 Напишите нам в WhatsApp':'💬 Chat with us on WhatsApp';}
   document.querySelectorAll('.lb').forEach(function(b){b.classList.remove('on');});
   if(btn)btn.classList.add('on');
+}
+
+function toggleCard(card){
+  if(window.innerWidth>=600)return;
+  var isOpen=card.classList.contains('open');
+  document.querySelectorAll('.scard').forEach(function(c){c.classList.remove('open');});
+  if(!isOpen)card.classList.add('open');
+}
+
+// Scroll-triggered accordion — mobile only
+var accordionObserver = null;
+
+function initScrollAccordion(){
+  if(window.innerWidth>=600)return;
+  if(accordionObserver) accordionObserver.disconnect();
+  accordionObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        document.querySelectorAll('.scard').forEach(function(c){c.classList.remove('open');});
+        entry.target.classList.add('open');
+      }
+    });
+  },{threshold:0.25, rootMargin:'-10% 0px -10% 0px'});
+  setTimeout(function(){
+    document.querySelectorAll('.scard').forEach(function(card){
+      accordionObserver.observe(card);
+    });
+  }, 100);
 }
 
 function scrollToCard(id){
