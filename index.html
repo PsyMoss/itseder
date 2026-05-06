@@ -175,10 +175,19 @@ tailwind.config = {
         :class="openCards.includes(card.id) ? (card.color==='acc2' ? 'border-acc2/60' : card.color==='acc3' ? 'border-acc3/60' : 'border-acc/60') : 'border-white/8'"
         style="scroll-snap-align:start;scroll-margin-top:70px"
       >
-        <!-- Header — diagonal image left, text right -->
+        <!-- Header — video or image with gradient, text overlay -->
         <div class="relative cursor-pointer overflow-hidden flex items-center" style="min-height:120px" @click="toggleCard(card.id)">
-          <!-- Image with smooth gradient fade — no visible edge -->
-          <div class="absolute inset-0">
+          <!-- Video (if exists) -->
+          <template x-if="cardVideos[card.id]">
+            <video
+              class="absolute inset-0 w-full h-full object-cover object-center"
+              :src="cardVideos[card.id]"
+              autoplay loop muted playsinline
+              @error="$el.style.display='none'; $el.nextElementSibling.style.display='block'"
+            ></video>
+          </template>
+          <!-- Image fallback -->
+          <div class="absolute inset-0" :style="cardVideos[card.id] ? 'display:none' : ''">
             <img
               :src="cardImages[card.id]"
               @error="$el.src = cardFallback[card.id]"
@@ -310,6 +319,10 @@ function app(){
       'studio':   'https://picsum.photos/seed/studio/400/200',
       'servers':  'https://picsum.photos/seed/servers/400/200',
       'partners': 'https://picsum.photos/seed/partners/400/200',
+    },
+    cardVideos: {
+      // Добавь сюда только те карточки для которых есть видео
+      // Пример: 'studio': '/videos/studio.mp4',
     },
 
     T: {
