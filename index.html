@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" x-data="app()" x-init="init()" :lang="lang" :dir="dir">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITSeder — IT solutions · Israel</title>
+
+<!-- SEO -->
+<meta name="description" content="פתרונות IT למשרדים, תמיכה מרחוק, שרתים ותשתיות. עברית · רוסית · אנגלית. 052-598-3311">
+<meta name="author" content="Alexey Pavlenko — itseder.com">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#F2A23A">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://itseder.com/">
+<meta property="og:title" content="ITSeder — IT solutions · Israel">
+<meta property="og:description" content="פתרונות IT למשרדים, תמיכה מרחוק, שרתים ותשתיות. עברית · רוסית · אנגלית">
+<meta property="og:image" content="https://itseder.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="ITSeder">
+<meta property="og:image:secure_url" content="https://itseder.com/og-image.png">
+<meta property="og:image:type" content="image/png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ITSeder — IT solutions · Israel">
+<meta name="twitter:description" content="פתרונות IT למשרדים, תמיכה מרחוק, שרתים ותשתיות">
+<meta name="twitter:image" content="https://itseder.com/og-image.png">
+
+<!-- Apple -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ITSeder">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0LGPY0DNL2"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0LGPY0DNL2');</script>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        bg:'#080A0D', bg2:'#10161D', bg3:'#151D26', bg4:'#1B2631',
+        acc:'#F2A23A', acc2:'#4EC39A', acc3:'#8FA8FF',
+        tx:'#F4F0E8', muted:'#B4AAA0',
+      },
+      fontFamily: {
+        sans:['Inter','system-ui','sans-serif'],
+        logo:['Verdana','Geneva','sans-serif'],
+      }
+    }
+  }
+}
+</script>
+
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  [x-cloak]{display:none!important}
+  html{scroll-behavior:smooth;scroll-padding-top:70px}
+  body{background:#080A0D;color:#F4F0E8;font-family:'Inter',system-ui,sans-serif;background-image:linear-gradient(180deg,#080A0D 0%,#0B1117 52%,#080A0D 100%)}
+
+  /* Progress bar */
+  #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#F2A23A,#4EC39A);z-index:200;transition:width .1s linear;border-radius:0 2px 2px 0;box-shadow:0 0 18px rgba(242,162,58,.25)}
+
+  /* Accordion animation */
+  .accordion-body{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .65s cubic-bezier(0.4,0,0.2,1), opacity .5s ease .1s;
+    opacity:0;
+    will-change:grid-template-rows,opacity;
+  }
+  .accordion-body.open{
+    grid-template-rows:1fr;
+    opacity:1;
+  }
+  .accordion-body > div{overflow:hidden}
+
+  /* Dot pulse */
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  .dot-pulse{animation:pulse 2s infinite}
+
+  /* Fade in on scroll */
+  .fade-in{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .fade-in.visible{opacity:1;transform:translateY(0)}
+
+  .whatsapp-link{border-color:rgba(37,211,102,.34);background:rgba(37,211,102,.055);color:#F4F0E8}
+  .whatsapp-link:hover{border-color:#7BE3A2;color:#7BE3A2}
+
+  /* RTL global text alignment */
+  [dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] h4{text-align:right}
+  [dir="rtl"] .rtl-text{text-align:right}
+  [dir="rtl"] ul{padding-right:0}
+
+  /* Reduced motion — accessibility */
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}
+    .fade-in{opacity:1;transform:none}
+  }
+</style>
+</head>
+
+<body class="min-h-screen antialiased" @scroll.window="onScroll()">
+
+<!-- Progress bar -->
+<div id="progress-bar" :style="`width:${progress}%`"></div>
+
+<!-- NAV -->
+<nav x-data="{ langOpen: false }" @click.outside="langOpen = false" class="sticky top-0 z-50 flex items-center justify-between px-5 py-4 border-b border-white/8 backdrop-blur-lg" style="background:rgba(8,10,13,0.95)">
+  <div class="font-logo font-bold text-xl text-tx tracking-tight cursor-pointer" @click="scrollTop()">
+    IT<span class="text-acc">Seder</span>
+  </div>
+  <div class="flex items-center gap-2">
+    <button @click="scrollToBottom()" class="w-9 h-9 rounded-full border border-acc/50 bg-acc/10 text-acc flex items-center justify-center hover:bg-acc/20 hover:border-acc transition-all duration-200" aria-label="Contact">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </button>
+    <div class="flex gap-1">
+    <template x-for="l in ['en','ru','he']" :key="l">
+      <button
+        x-show="lang===l || langOpen"
+        x-transition:enter="transition ease-out duration-150"
+        x-transition:enter-start="opacity-0 scale-75"
+        x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="transition ease-in duration-100"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-75"
+        @click="lang===l ? langOpen = !langOpen : (setLang(l), langOpen = false)"
+        :class="lang===l ? 'border-acc text-acc bg-acc/10' : 'border-white/10 text-muted hover:border-acc/50 hover:text-tx'"
+        class="px-2.5 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 min-h-[36px] uppercase"
+        x-text="l==='he'?'עב':l==='ru'?'RU':'EN'"
+      ></button>
+    </template>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="max-w-2xl mx-auto px-5 pt-12 pb-8 text-center fade-in">
+  <!-- H1 -->
+  <h1 class="text-4xl sm:text-5xl font-bold leading-tight tracking-tight mb-4 text-tx text-center" x-html="t.h1"></h1>
+  <!-- Subtitle -->
+  <p class="text-base text-muted leading-relaxed max-w-md mx-auto mb-8" x-text="t.hsub"></p>
+  <!-- Buttons -->
+  <div class="flex gap-3 justify-center flex-wrap">
+    <button @click="scrollToBottom()" class="px-7 py-3.5 bg-acc text-bg font-semibold rounded-xl text-base transition-opacity hover:opacity-85 min-h-[50px]" x-text="t.b1"></button>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="max-w-2xl mx-auto px-5 pt-8 pb-0 fade-in">
+  <div class="flex flex-col gap-3" id="cards-container"
+    style="scroll-snap-type:y proximity">
+    <template x-for="(card, i) in t.cards" :key="card.id">
+      <div
+        :id="'card-'+card.id"
+        :data-card-id="card.id"
+        class="rounded-2xl border bg-bg2 transition-all duration-300 overflow-hidden"
+        :class="openCards.includes(card.id) ? (card.color==='acc2' ? 'border-acc2/60' : card.color==='acc3' ? 'border-acc3/60' : 'border-acc/60') : 'border-white/8'"
+        style="scroll-snap-align:start;scroll-margin-top:70px"
+      >
+        <!-- Header — video or image with gradient, text overlay -->
+        <div class="relative cursor-pointer overflow-hidden flex items-center" style="min-height:120px" @click="toggleCard(card.id)">
+          <!-- Video (if exists) -->
+          <template x-if="cardVideos[card.id]">
+            <video
+              class="absolute inset-0 w-full h-full object-cover object-center"
+              :src="cardVideos[card.id]"
+              autoplay loop muted playsinline
+              @error="$el.style.display='none'; $el.nextElementSibling.style.display='block'"
+            ></video>
+          </template>
+          <!-- Image fallback -->
+          <div class="absolute inset-0" :style="cardVideos[card.id] ? 'display:none' : ''">
+            <img
+              :src="cardImages[card.id]"
+              @error="$el.src = cardFallback[card.id]"
+              class="w-full h-full object-cover object-center"
+              :alt="card.h"
+              loading="lazy"
+            >
+          </div>
+          <!-- Multi-stop gradient — smooth invisible fade -->
+          <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(8,10,13,0) 0%, rgba(8,10,13,0.18) 25%, rgba(8,10,13,0.64) 42%, rgba(8,10,13,0.9) 52%, rgba(8,10,13,0.98) 60%, rgba(8,10,13,1) 70%)"></div>
+
+          <!-- Text — right side -->
+          <div class="relative z-10 flex items-center justify-between w-full px-5 py-5 gap-3"
+            :class="dir==='rtl' ? 'flex-row-reverse' : ''">
+            <div class="flex-1" :class="dir==='rtl'?'text-right':''">
+              <span class="inline-flex pb-1 text-[18px] font-semibold tracking-wide mb-2"
+                :class="card.color==='acc2' ? 'text-acc2 border-b border-acc2/70' : card.color==='acc3' ? 'text-acc3 border-b border-acc3/70' : 'text-acc border-b border-acc/70'"
+                x-text="card.tag"></span>
+              <span class="text-[18px] font-bold text-white block leading-tight" x-text="card.h"></span>
+            </div>
+            <svg class="w-5 h-5 flex-shrink-0 transition-transform duration-500"
+              :class="[openCards.includes(card.id) ? 'rotate-180' : '', card.color==='acc2' ? 'text-acc2' : card.color==='acc3' ? 'text-acc3' : 'text-acc']"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Body — accordion -->
+        <div
+          class="accordion-body"
+          :class="openCards.includes(card.id) ? 'open' : ''"
+        >
+          <div>
+            <div class="px-5 pb-6" :class="dir==='rtl'?'text-right':''">
+              <p class="text-lg leading-relaxed mb-5" style="color:#D6CEC4" x-text="card.p"></p>
+              <!-- Grid items (servers/partners style) -->
+              <template x-if="card.grid">
+                <div class="flex flex-col gap-3">
+                  <template x-for="item in card.grid" :key="item[0]">
+                    <div class="rounded-xl border border-white/8 bg-bg4 px-4 py-3" :class="dir==='rtl'?'text-right':''">
+                      <h4 class="text-lg font-bold text-tx mb-1" x-text="item[0]"></h4>
+                      <p class="text-base leading-relaxed" style="color:#C4BAB0" x-text="item[1]"></p>
+                    </div>
+                  </template>
+                </div>
+              </template>
+              <!-- Regular list items -->
+              <template x-if="!card.grid">
+                <ul class="flex flex-col gap-4">
+                  <template x-for="item in card.li" :key="item">
+                    <li class="text-lg leading-relaxed" style="color:#D6CEC4" :class="dir==='rtl' ? 'text-right' : 'flex items-start gap-3'">
+                      <template x-if="dir!=='rtl'">
+                        <span class="text-acc flex-shrink-0 mt-1 text-xl">•</span>
+                      </template>
+                      <span x-text="(dir==='rtl' ? '• ' : '') + item"></span>
+                    </li>
+                  </template>
+                </ul>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="max-w-2xl mx-auto px-5 pt-6 pb-10 fade-in" style="scroll-margin-top:70px">
+  <div class="rounded-2xl border border-acc/20 bg-bg3 p-6 sm:p-7 text-center relative overflow-hidden shadow-[0_22px_60px_rgba(0,0,0,.28)]">
+    <p class="text-sm text-muted mb-1 text-center" x-text="t.ch2"></p>
+    <h2 class="text-2xl sm:text-3xl font-logo font-bold text-tx mb-3 text-center tracking-tight" style="text-align:center!important">Alexey Pavlenko</h2>
+    <div class="flex gap-2 justify-center mb-6">
+      <template x-for="l in ['EN','RU','HE']" :key="l">
+        <span class="text-[11px] px-3 py-1 rounded-full border border-white/12 bg-bg2/70 text-muted" x-text="l"></span>
+      </template>
+    </div>
+    <div class="flex flex-col gap-3 relative z-10">
+      <!-- Phone -->
+      <a href="tel:+972525983311" class="relative flex items-center justify-center px-14 py-3 rounded-xl border border-white/15 bg-bg4/80 text-tx text-base transition-all hover:border-acc/70 hover:text-acc hover:bg-bg4 min-h-[52px]">
+        <span class="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-lg bg-bg3 border border-white/10 flex items-center justify-center text-acc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg></span>
+        <span class="block w-full text-center leading-normal">052-598-3311</span>
+      </a>
+      <!-- Email -->
+      <a href="mailto:info@itseder.com" class="relative flex items-center justify-center px-14 py-3 rounded-xl border border-white/15 bg-bg4/80 text-tx text-base transition-all hover:border-acc/70 hover:text-acc hover:bg-bg4 min-h-[52px]">
+        <span class="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-lg bg-bg3 border border-white/10 flex items-center justify-center text-acc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span>
+        <span class="block w-full text-center leading-normal">info@itseder.com</span>
+      </a>
+      <!-- WhatsApp -->
+      <a href="https://wa.me/972525983311" target="_blank" rel="noopener"
+        class="whatsapp-link relative flex items-center justify-center px-14 py-3 rounded-xl border text-base transition-all min-h-[52px]">
+        <span class="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 rounded-lg flex items-center justify-center border border-white/10" style="background:rgba(37,211,102,.62)">
+          <svg width="15" height="15" fill="rgba(255,255,255,.86)" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </span>
+        <span class="block w-full text-center leading-normal" x-text="t.waText"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center py-5 text-xs text-muted border-t border-white/8 px-5" x-text="t.foot"></footer>
+
+<script>
+function app(){
+  return {
+    lang: 'he',
+    dir: 'rtl',
+    progress: 0,
+    openCards: [],
+    _scrollStarted: false,
+    _lastOpenedIndex: -1,
+    _reachedBottom: false,
+    _isProgramScroll: false,
+    cardImages: {
+      'pc':     '/images/pc.avif',
+      'office': '/images/office.avif',
+      'remote': '/images/remote.avif',
+      'studio': '/images/studio.avif',
+      'servers': '/images/servers.avif',
+      'partners': '/images/partners.avif',
+    },
+    cardFallback: {
+      'pc':       'https://picsum.photos/seed/computer/400/200',
+      'office':   'https://picsum.photos/seed/office/400/200',
+      'remote':   'https://picsum.photos/seed/remote/400/200',
+      'studio':   'https://picsum.photos/seed/studio/400/200',
+      'servers':  'https://picsum.photos/seed/servers/400/200',
+      'partners': 'https://picsum.photos/seed/partners/400/200',
+    },
+    cardVideos: {
+      'pc':      '/videos/pc.mp4',
+      'office':  '/videos/office.mp4',
+      'remote':  '/videos/remote.mp4',
+      'studio':  '/videos/studio.mp4',
+      'servers': '/videos/servers.mp4',
+      'partners':'/videos/partners.mp4',
+    },
+
+    T: {
+      en:{dir:'ltr',lang:'en',h1:'We set up.<br><em class="text-acc not-italic">You get to work.</em>',hsub:'Full IT setup for offices, remote support, servers and infrastructure — for law firms, insurance, finance and small business across Israel.',b1:'Get in touch',cards:[{id:'pc',tag:'Most popular',h:'PC Setup',p:'Home & office computers — from unboxing to fully working',li:['Windows / macOS configuration','Software & licensing','Network & printer setup','Data migration']},{id:'office',tag:'Best value',h:'Office Turnkey',p:'New office? I set up everything so your team works from day one',li:['Workstations for all staff','Network & Wi-Fi','Email, cloud, shared drives','Security & backup']},{id:'remote',tag:'Recurring',h:'Remote Support',p:'Fast help for any tech issue — no waiting for a visit',li:['Any OS, any device','Viruses, slowdowns, crashes','Available as monthly plan']},{id:'studio',tag:'Studio & Creative',h:'IT for Studios',p:'Installation, upgrade and setup of professional studio software',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','PC optimization for maximum performance']},{id:'servers',color:'acc2',tag:'Infrastructure',h:'Servers & Networks',p:'Serious infrastructure for businesses that need reliability, security and full control.',grid:[['File Servers','Centralized storage, access control, backups'],['Active Directory','User management, domain, group policies'],['VPN & Security','Secure remote access, firewall setup'],['Cloud & Hybrid','Microsoft 365, Azure, Google Workspace'],['CCTV & Monitoring','Cameras, NVR, remote viewing'],['Structured Cabling','Clean, reliable wired infrastructure']]},{id:'partners',color:'acc3',tag:'Collaboration',h:'Partner services',p:'I work with trusted specialists — one contact, coordinated result.',grid:[['🌐 Websites & Landing pages','Modern multilingual sites'],['📞 IP Telephony','Virtual PBX, SIP lines, office phones'],['🖨️ Printers & MFP','Supply, setup and maintenance'],['🔒 Access Control','Smart locks, intercoms, badge systems']]}],ch2:'Ready to start?',waText:'Chat on WhatsApp',foot:'© 2025 itseder.com · Alexey Pavlenko · Israel'},
+
+      ru:{dir:'ltr',lang:'ru',h1:'Мы настраиваем.<br><em class="text-acc not-italic">Вы работаете.</em>',hsub:'Настройка офисов под ключ, удалённая поддержка, серверы и инфраструктура — для адвокатских контор, страховых, финансовых компаний и малого бизнеса.',b1:'Написать нам',cards:[{id:'pc',tag:'Самое популярное',h:'Настройка ПК',p:'Домашние и офисные компьютеры — от распаковки до полной работы',li:['Настройка Windows / macOS','Установка и лицензирование ПО','Сеть и принтеры','Перенос данных']},{id:'office',tag:'Лучшая ценность',h:'Офис под ключ',p:'Новый офис? Настрою всё так, чтобы сотрудники сели и сразу работали',li:['Рабочие места для всех сотрудников','Сеть и Wi-Fi','Почта, облако, общие диски','Безопасность и резервные копии']},{id:'remote',tag:'Регулярный',h:'Удалённая поддержка',p:'Быстрая помощь при любой IT-проблеме — без ожидания визита',li:['Любая ОС, любое устройство','Вирусы, зависания, сбои','Доступна как ежемесячный план']},{id:'studio',tag:'Студия & Креатив',h:'IT для студий',p:'Установка, апгрейд и настройка профессионального студийного ПО',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','Оптимизация ПК для максимальной производительности']},{id:'servers',color:'acc2',tag:'Инфраструктура',h:'Серверы и сети',p:'Серьёзная инфраструктура для бизнеса — надёжность, безопасность и контроль над данными.',grid:[['Файловые серверы','Хранение, права доступа, бэкапы'],['Active Directory','Пользователи, домен, политики'],['VPN и безопасность','Удалённый доступ, файрвол'],['Облако и гибрид','Microsoft 365, Azure, Google'],['Видеонаблюдение','Камеры, NVR, удалённый просмотр'],['Кабельная сеть','Чистая проводная инфраструктура']]},{id:'partners',color:'acc3',tag:'Коллаборации',h:'Партнёрские услуги',p:'Работаю с проверенными специалистами — один контакт, согласованный результат.',grid:[['🌐 Сайты и лендинги','Современные многоязычные сайты'],['📞 IP-телефония','Виртуальные АТС, SIP-линии'],['🖨️ Принтеры и МФУ','Поставка, настройка, обслуживание'],['🔒 Контроль доступа','Замки, домофоны, пропуска']]}],ch2:'Готовы начать?',waText:'Написать в WhatsApp',foot:'© 2025 itseder.com · Алексей Павленко · Израиль'},
+
+      he:{dir:'rtl',lang:'he',h1:'אנחנו מסדרים.<br><em class="text-acc not-italic">אתם יוצרים.</em>',hsub:'הקמת IT למשרדים, תמיכה מרחוק, שרתים ותשתיות עבור משרדי עורכי דין, ביטוח, פיננסים ועסקים קטנים.',b1:'צרו קשר',cards:[{id:'pc',tag:'שירותים נפוצים',h:'הגדרת מחשב',p:'תיקונים, שידרוגים וייעוץ למחשבים ביתיים ומשרדיים',li:['הגדרת Windows / macOS','התקנה ורישוי תוכנות','רשת ומדפסות','העברת נתונים']},{id:'office',tag:'שירות מקיף למשרד',h:'משרד עד המפתח',p:'משרד חדש? הגדרה/התקנת כל הנדרש לתחילת עבודה מיידית',li:['תחנות עבודה לכל העובדים','תשתית רשת ו-Wi-Fi','אימייל, ענן, כוננים משותפים','אבטחה וגיבויים']},{id:'remote',tag:'שירות שוטף קבוע',h:'תמיכה מרחוק',p:'עזרה מהירה לכל בעיית IT, בלי להמתין לביקור',li:['כל מערכת הפעלה, כל מכשיר','וירוסים, האטות, קריסות','זמין כתוכנית חודשית']},{id:'studio',tag:'סטודיו & קריאייטיב',h:'שירותי IT לסטודיו',p:'התקנה, שדרוג והגדרת תוכנות מקצועיות לסטודיו',li:['Cubase · Ableton · Logic Pro','Adobe Premiere · After Effects','Photoshop · Illustrator','אופטימיזציה של המחשב לביצועים מקסימליים']},{id:'servers',color:'acc2',tag:'תשתיות',h:'שרתים ורשתות',p:'תשתית רצינית לעסקים שצריכים אמינות, אבטחה ושליטה מלאה בנתונים שלהם.',grid:[['שרתי קבצים','אחסון מרכזי, גישה, גיבויים'],['Active Directory','משתמשים, דומיין, מדיניות'],['VPN ואבטחה','גישה מרחוק, חומת אש'],['ענן והיברידי','Microsoft 365, Azure, Google'],['מצלמות אבטחה','מצלמות, NVR, צפייה מרחוק'],['תשתית כבלים','תשתית קווית נקייה ואמינה']]},{id:'partners',color:'acc3',tag:'שיתופי פעולה',h:'שירותי שותפים',p:'אני עובד עם מומחים מוכרים — אתם מקבלים איש קשר אחד ותוצאה מתואמת.',grid:[['🌐 אתרים ודפי נחיתה','אתרים מודרניים רב-לשוניים'],['📞 טלפוניית IP','מרכזייה וירטואלית, קווי SIP'],['🖨️ מדפסות ו-MFP','אספקה, הגדרה, תחזוקה'],['🔒 בקרת כניסה','מנעולים חכמים, אינטרקום']]}],ch2:'מוכנים להתחיל?',waText:'כתבו לנו ב-WhatsApp',foot:'© 2025 itseder.com · אלכסיי פבלנקו · ישראל'}
+    },
+
+    get t(){ return this.T[this.lang] },
+
+    init(){
+      this.setLang('he');
+      this.$nextTick(()=>{
+        this.initFadeIn();
+      });
+    },
+
+    setLang(l){
+      this.lang = l;
+      this.dir = this.T[l].dir;
+      this.openCards = [];
+      this._scrollStarted = false;
+      this._lastOpenedIndex = -1;
+      this._reachedBottom = false;
+    },
+
+    scrollTop(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    },
+
+    scrollToBottom(){
+      this._scrolling = true;
+      window.scrollTo({top: document.body.scrollHeight, behavior:'smooth'});
+      const onScrollEnd = () => {
+        this._scrolling = false;
+        this._reachedBottom = true;
+        this.openCards = [];
+        window.removeEventListener('scrollend', onScrollEnd);
+      };
+      window.addEventListener('scrollend', onScrollEnd);
+      // fallback для браузеров без scrollend
+      setTimeout(() => {
+        this._scrolling = false;
+        this._reachedBottom = true;
+        this.openCards = [];
+        window.removeEventListener('scrollend', onScrollEnd);
+      }, 1500);
+    },
+
+    toggleCard(id){
+      const idx = this.openCards.indexOf(id);
+      if(idx !== -1){
+        this.openCards.splice(idx, 1);
+      } else {
+        this.openCards.push(id);
+      }
+    },
+
+    onScroll(){
+      if(this._scrolling) return;
+      const scrollTop = window.scrollY;
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      this.progress = docH > 0 ? (scrollTop/docH)*100 : 0;
+
+      if(docH <= 5) return;
+      const atTop = scrollTop <= 5;
+
+      if(atTop){
+        this._reachedBottom = false;
+        this._lastOpenedIndex = -1;
+      }
+
+      this._scrollStarted = scrollTop > 5;
+
+      if(!this._scrollStarted){
+        this.openCards = [];
+        this._lastOpenedIndex = -1;
+        return;
+      }
+
+      if(this._reachedBottom){
+        return;
+      }
+
+      const cards = this.t.cards;
+      const count = this._scrollCardCount();
+
+      for(let i = 0; i < count; i++){
+        if(!this.openCards.includes(cards[i].id)){
+          this.openCards.push(cards[i].id);
+        }
+      }
+      this._lastOpenedIndex = Math.max(this._lastOpenedIndex, count - 1);
+
+      for(let i = count; i < cards.length; i++){
+        const ci = this.openCards.indexOf(cards[i].id);
+        if(ci !== -1){
+          this.openCards.splice(ci, 1);
+        }
+      }
+      if(count <= this._lastOpenedIndex){
+        this._lastOpenedIndex = count - 1;
+      }
+
+      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 5;
+      if(atBottom){
+        this._reachedBottom = true;
+        this.openCards = [];
+        this._lastOpenedIndex = -1;
+      }
+    },
+
+    _scrollCardCount(){
+      const scrollTop = window.scrollY;
+      const vh = window.innerHeight;
+      const cards = this.t.cards;
+      let count = 0;
+      for(let i = 0; i < cards.length; i++){
+        const el = document.querySelector(`[data-card-id="${cards[i].id}"]`);
+        if(!el) break;
+        const top = el.getBoundingClientRect().top + scrollTop;
+        if(top < scrollTop + vh){
+          count++;
+        } else {
+          break;
+        }
+      }
+      return count;
+    },
+
+    initFadeIn(){
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+      },{threshold:0.1});
+      document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+    }
+  }
+}
+</script>
+</body>
+</html>
